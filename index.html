@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BYOP Workshop — AI Toolkit Wiki</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="reading-progress"></div>
+
+    <div class="shell">
+      <!-- SIDEBAR NAV -->
+      <nav id="sidebar">
+        <div class="nav-logo">
+          <div class="nav-logo-title">BYOP Workshop</div>
+          <div class="nav-logo-sub">AI Toolkit Wiki · 2026</div>
+        </div>
+
+        <div class="nav-section-label">Intro</div>
+        <a href="#opening" class="nav-link active"><span class="nav-icon">🌐</span> Noutăți AI apr/mai 2026</a>
+
+        <div class="nav-section-label">Bloc 1 — Creare</div>
+        <a href="#landing" class="nav-link"><span class="nav-icon">🌐</span> Landing pages cu AI</a>
+        <a href="#social" class="nav-link"><span class="nav-icon">📱</span> Postări social media</a>
+        <a href="#av" class="nav-link"><span class="nav-icon">🎬</span> Conținut audiovizual</a>
+
+        <div class="nav-section-label">Bloc 2 — Automatizări</div>
+        <a href="#automation" class="nav-link"><span class="nav-icon">⚡</span> Automatizări cu AI</a>
+        <a href="#chatbot" class="nav-link"><span class="nav-icon">💬</span> Chatboți AI</a>
+        <a href="#video-auto" class="nav-link"><span class="nav-icon">📤</span> Postare automată video</a>
+
+        <div class="nav-section-label">Bloc 3 — Educație</div>
+        <a href="#graphics" class="nav-link"><span class="nav-icon">📊</span> Grafice & imagini</a>
+        <a href="#quiz" class="nav-link"><span class="nav-icon">✅</span> Autoevaluare & quiz</a>
+        <a href="#gaps" class="nav-link"><span class="nav-icon">🔍</span> Depistare lacune</a>
+
+        <div class="nav-section-label">Bloc 4 — Protecție</div>
+        <a href="#security" class="nav-link"><span class="nav-icon">🔒</span> Securitate & protecție</a>
+
+        <div class="nav-footer">
+          <div>🟢 Gratuit &nbsp; 🟡 Freemium &nbsp; 🟠 Plătit</div>
+          <div style="margin-top: 6px">Actualizat mai 2026</div>
+        </div>
+      </nav>
+
+      <!-- MAIN CONTENT -->
+      <main id="main">
+        <!-- HERO -->
+        <div class="hero">
+          <div class="hero-eyebrow">Workshop Wiki</div>
+          <h1 class="hero-title">Bring Your Own <span>Problem</span></h1>
+          <p class="hero-desc">Instrumente, scenarii și prompts practice pentru fiecare use-case. Găsește soluția AI potrivită pentru problema ta.</p>
+          <div class="hero-meta">
+            <span class="hero-badge green">✦ Actualizat mai 2026</span>
+            <span class="hero-badge blue">12 categorii de instrumente</span>
+            <span class="hero-badge">~3h format workshop</span>
+          </div>
+        </div>
+
+        <div class="content">
+          <!-- ===== DESCHIDERE ===== -->
+          <section class="section" id="opening">
+            <div class="section-header">
+              <div class="section-icon" style="background: rgba(200, 240, 96, 0.1)">🌐</div>
+              <div>
+                <h2 class="section-title">Noutăți AI — Aprilie / Mai 2026</h2>
+                <p class="section-subtitle">Deschidere workshop · Ce s-a schimbat? Cum scriem altfel azi?</p>
+              </div>
+              <span class="duration-tag">15 min</span>
+            </div>
+
+            <div class="intro-block">
+              <div class="quote"><span>„Все меняется"</span> — modelele gândesc altfel acum</div>
+              <p style="font-size: 14px; color: #aaa; font-weight: 300">
+                Acum 6 luni un prompt scurt funcționa bine. Azi modelele au „reasoning" nativ — poți fi mult mai vag în cerere și mult mai specific în context. Demonstrație live: același prompt în
+                Claude Sonnet 4 vs GPT-4o vs Gemini 2.5 Pro.
+              </p>
+            </div>
+
+            <div class="cards">
+              <div class="card">
+                <div class="card-label">Ce e nou</div>
+                <div class="card-title">Modele cu reasoning</div>
+                <div class="card-desc">Claude 4, GPT-o3, Gemini 2.5 Pro — toate „gândesc" înainte de răspuns. Poți cere sarcini complexe multi-pas fără să le defalci tu.</div>
+              </div>
+              <div class="card">
+                <div class="card-label">Ce s-a schimbat</div>
+                <div class="card-title">Prompturi mai scurte, context mai bun</div>
+                <div class="card-desc">În loc de: „Fă exact X, apoi Y, apoi Z" → azi: „Vreau să obțin rezultatul R. Contextul meu e C." Modelul alege pașii.</div>
+              </div>
+              <div class="card">
+                <div class="card-label">Trend major</div>
+                <div class="card-title">Agenți AI autonomi</div>
+                <div class="card-desc">Modelele pot naviga web, executa cod, trimite email — fără să mai apeși tu fiecare buton. Computer Use, Operator, Claude Code.</div>
+              </div>
+            </div>
+
+            <div class="callout tip">
+              <span class="callout-icon">💡</span>
+              <div>
+                <strong>Demo recomandat:</strong> Pornește cu același prompt în 3 modele simultan. Arată diferența dintre output-uri. Publicul înțelege imediat că nu există „cel mai bun AI" — există
+                cel mai potrivit pentru task.
+              </div>
+            </div>
+
+            <div class="prompt-block">„Sunt profesor de biologie la liceu. Am un capitol despre fotosinteza pe care elevii îl găsesc plictisitor. Ajută-mă să îl fac mai interesant."</div>
+          </section>
+
+          <hr />
+
+          <!-- ===== LANDING PAGES ===== -->
+          <section class="section" id="landing">
+            <div class="section-header">
+              <div class="section-icon" style="background: rgba(96, 200, 240, 0.1)">🌐</div>
+              <div>
+                <h2 class="section-title">Landing Pages cu AI</h2>
+                <p class="section-subtitle">De la idee la site live în 10 minute · Fără cod · Hosting gratuit</p>
+              </div>
+              <span class="duration-tag">20 min</span>
+            </div>
+
+            <div class="tools-wrap">
+              <div class="tools-title">Instrumente</div>
+              <div class="tools-grid">
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Lovable.dev
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Replit
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  GitHub Pages (host)
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  v0.dev (Vercel)
+                </div>
+                <div class="tool freemium">
+                  <div class="tool-dot"></div>
+                  Framer AI
+                </div>
+                <div class="tool paid">
+                  <div class="tool-dot"></div>
+                  Webflow AI
+                </div>
+              </div>
+              <div class="tool-legend">
+                <div class="tool-legend-item">
+                  <div class="tool-legend-dot" style="background: var(--accent)"></div>
+                  Gratuit
+                </div>
+                <div class="tool-legend-item">
+                  <div class="tool-legend-dot" style="background: var(--accent2)"></div>
+                  Freemium
+                </div>
+                <div class="tool-legend-item">
+                  <div class="tool-legend-dot" style="background: var(--warn)"></div>
+                  Plătit
+                </div>
+              </div>
+            </div>
+
+            <div class="scenarios-title">Scenarii practice</div>
+
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(96, 200, 240, 0.1); color: var(--accent2)">A</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Produs handmade — pagină de prezentare + comandă</div>
+                <div class="scenario-desc">Lovable.dev: descriei produsul în chat → generezi pagina → deploy automat. Adaugi formular de comandă conectat la email cu Formspree (gratuit).</div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(96, 200, 240, 0.1); color: var(--accent2)">B</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Eveniment / curs online — landing cu FAQ generat AI</div>
+                <div class="scenario-desc">Dai descrierea cursului → AI generează secțiunile: Hero, Beneficii, Program, FAQ, Formular înscriere. FAQ e generat automat din descriere.</div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(96, 200, 240, 0.1); color: var(--accent2)">C</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Replit — editezi codul în browser, adaugi funcționalități</div>
+                <div class="scenario-desc">Bun dacă vrei să modifici ceva specific: „Adaugă un buton WhatsApp" → AI modifică codul în timp real. Hosting inclus gratuit pe replit.app.</div>
+              </div>
+            </div>
+
+            <div class="prompt-block">
+              „Creează o pagină de prezentare pentru cursul meu de fotografie pentru începători. Include: titlu atractiv, 3 beneficii, program pe 6 săptămâni, testimoniale placeholder, formular de
+              înscriere cu câmpuri: Nume, Email, Telefon. Design modern, culori alb-negru cu accent galben."
+            </div>
+
+            <div class="callout info">
+              <span class="callout-icon">ℹ️</span>
+              <div><strong>GitHub Pages:</strong> Gratuit, domain .github.io, potrivit pentru site-uri statice. Lovable exportă cod HTML/CSS/JS direct în GitHub. Durează 2 minute să fie live.</div>
+            </div>
+
+            <div class="scenarios-title" style="margin-top: 24px">Workflow recomandat</div>
+            <div class="workflow">
+              <div class="workflow-step">
+                <div class="workflow-step-num">1</div>
+                <div class="workflow-step-body">
+                  <div class="workflow-step-title">Descrie pagina în Lovable.dev</div>
+                  <div class="workflow-step-desc">Chat simplu, fără termeni tehnici. „Vreau o pagină pentru..."</div>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num">2</div>
+                <div class="workflow-step-body">
+                  <div class="workflow-step-title">Modifici în chat până ești mulțumit</div>
+                  <div class="workflow-step-desc">„Schimbă culoarea butonului", „Adaugă o secțiune cu prețuri"</div>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num">3</div>
+                <div class="workflow-step-body">
+                  <div class="workflow-step-title">Export → GitHub → Pages</div>
+                  <div class="workflow-step-desc">Un click: Export to GitHub → activezi GitHub Pages → site live</div>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num">4</div>
+                <div class="workflow-step-body">
+                  <div class="workflow-step-title">Formular: conectezi Formspree</div>
+                  <div class="workflow-step-desc">formspree.io — primești răspunsuri direct pe email, fără cod backend</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr />
+
+          <!-- ===== SOCIAL MEDIA ===== -->
+          <section class="section" id="social">
+            <div class="section-header">
+              <div class="section-icon" style="background: rgba(200, 240, 96, 0.1)">📱</div>
+              <div>
+                <h2 class="section-title">Postări Social Media cu AI</h2>
+                <p class="section-subtitle">Imagini · Carusel · Video scurt · Instagram · TikTok · LinkedIn</p>
+              </div>
+              <span class="duration-tag">20 min</span>
+            </div>
+
+            <div class="tools-wrap">
+              <div class="tools-title">Instrumente</div>
+              <div class="tools-grid">
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Canva AI (Magic Design)
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Gemini Imagen 3
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Qwen VL
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  CapCut AI
+                </div>
+                <div class="tool freemium">
+                  <div class="tool-dot"></div>
+                  Adobe Express AI
+                </div>
+                <div class="tool paid">
+                  <div class="tool-dot"></div>
+                  Midjourney
+                </div>
+                <div class="tool paid">
+                  <div class="tool-dot"></div>
+                  Opus Clip
+                </div>
+              </div>
+            </div>
+
+            <table class="wiki-table">
+              <thead>
+                <tr>
+                  <th>Format</th>
+                  <th>Instrument recomandat</th>
+                  <th>Timp</th>
+                  <th>Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Postare imagine single</td>
+                  <td>Canva AI / Gemini Imagen</td>
+                  <td>2 min</td>
+                  <td>Gratuit</td>
+                </tr>
+                <tr>
+                  <td>Carusel educativ (7 slide-uri)</td>
+                  <td>Canva Magic Design</td>
+                  <td>5 min</td>
+                  <td>Gratuit</td>
+                </tr>
+                <tr>
+                  <td>Reels / Shorts din video lung</td>
+                  <td>CapCut AI / Opus Clip</td>
+                  <td>3 min</td>
+                  <td>Gratuit/Plătit</td>
+                </tr>
+                <tr>
+                  <td>Imagine produs stilizată</td>
+                  <td>Midjourney / Adobe Firefly</td>
+                  <td>3 min</td>
+                  <td>Plătit</td>
+                </tr>
+                <tr>
+                  <td>Caption + hashtag-uri</td>
+                  <td>Claude / ChatGPT</td>
+                  <td>1 min</td>
+                  <td>Gratuit</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="scenarios-title">Scenarii practice</div>
+
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(200, 240, 96, 0.1); color: var(--accent)">A</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Carusel educativ din text</div>
+                <div class="scenario-desc">Canva Magic Design: lipești un articol sau text → AI îl transformă în 7 slide-uri cu titluri, bullet-uri, imagini. Poți alege stilul vizual.</div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(200, 240, 96, 0.1); color: var(--accent)">B</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Imagine produs cu fundal generat AI</div>
+                <div class="scenario-desc">Gemini Imagen / Qwen: „Un borcănaș de miere pe o masă de lemn, lumină naturală, stil editorial." Adaugi textul produsului în Canva.</div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(200, 240, 96, 0.1); color: var(--accent)">C</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Reels / TikTok din video lung</div>
+                <div class="scenario-desc">
+                  CapCut AI Auto-Cut: incarci un video de 10-20 min → AI detectează cele mai bune momente → generează 3-5 clipuri verticale cu subtitrare automată și muzică.
+                </div>
+              </div>
+            </div>
+
+            <div class="prompt-block">
+              „Creează 5 idei de postări pentru Instagram pentru un brand de produse naturale de îngrijire a pielii. Include: tipul de postare (foto/carusel/reel), descrierea imaginii, captionul (max
+              150 caractere), 10 hashtag-uri relevante. Tonul: natural, autentic, educativ."
+            </div>
+          </section>
+
+          <hr />
+
+          <!-- ===== AUDIOVIZUAL ===== -->
+          <section class="section" id="av">
+            <div class="section-header">
+              <div class="section-icon" style="background: rgba(240, 96, 200, 0.1)">🎬</div>
+              <div>
+                <h2 class="section-title">Conținut Audiovizual cu AI</h2>
+                <p class="section-subtitle">Subtitrare · Sonorizare · Avatar · Animație · Multilingv</p>
+              </div>
+              <span class="duration-tag">15 min</span>
+            </div>
+
+            <div class="tools-wrap">
+              <div class="tools-title">Instrumente</div>
+              <div class="tools-grid">
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  ElevenLabs (free tier)
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  NotebookLM Audio
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Kling AI
+                </div>
+                <div class="tool freemium">
+                  <div class="tool-dot"></div>
+                  Runway ML
+                </div>
+                <div class="tool paid">
+                  <div class="tool-dot"></div>
+                  HeyGen (avatar)
+                </div>
+                <div class="tool paid">
+                  <div class="tool-dot"></div>
+                  Sora (OpenAI)
+                </div>
+                <div class="tool freemium">
+                  <div class="tool-dot"></div>
+                  Descript
+                </div>
+              </div>
+            </div>
+
+            <div class="scenarios-title">Scenarii practice</div>
+
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(240, 96, 200, 0.1); color: var(--accent3)">A</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Avatar propriu care vorbește orice text</div>
+                <div class="scenario-desc">HeyGen: încarci 2 minute de video cu tine vorbind → AI creează un avatar digital. Dai orice text → avatarul tău îl prezintă, în orice limbă.</div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(240, 96, 200, 0.1); color: var(--accent3)">B</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Podcast audio din document PDF</div>
+                <div class="scenario-desc">
+                  NotebookLM: încarci orice PDF (curs, articol, raport) → generează un dialog audio în stilul unui podcast de 10-15 minute. Disponibil în română și engleză.
+                </div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(240, 96, 200, 0.1); color: var(--accent3)">C</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Animație / video din text (text-to-video)</div>
+                <div class="scenario-desc">Kling AI sau Runway: dai o descriere scurtă → video animat de 5-10 secunde. Bun pentru prezentări, reclame scurte, conținut educativ vizual.</div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(240, 96, 200, 0.1); color: var(--accent3)">D</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Subtitrare automată + traducere video</div>
+                <div class="scenario-desc">Descript sau CapCut AI: subtitrare automată în orice limbă, cu sincronizare perfectă. Export SRT sau ars pe video direct.</div>
+              </div>
+            </div>
+
+            <div class="callout warn">
+              <span class="callout-icon">⚠️</span>
+              <div>
+                <strong>Monetizare:</strong> Conținut AI-generated poate fi monetizat pe YouTube dacă dezvălui că e creat cu AI (politică actualizată 2025). Pe TikTok — același principiu. Pune mereu
+                disclaimer vizibil dacă folosești avatar sau voce clonată.
+              </div>
+            </div>
+          </section>
+
+          <hr />
+
+          <!-- ===== AUTOMATIZĂRI ===== -->
+          <section class="section" id="automation">
+            <div class="section-header">
+              <div class="section-icon" style="background: rgba(200, 240, 96, 0.1)">⚡</div>
+              <div>
+                <h2 class="section-title">Automatizări cu AI</h2>
+                <p class="section-subtitle">Zapier · Make · n8n — email, întruniri, formulare, sarcini delegate</p>
+              </div>
+              <span class="duration-tag">25 min</span>
+            </div>
+
+            <div class="tools-wrap">
+              <div class="tools-title">Instrumente</div>
+              <div class="tools-grid">
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  n8n (self-hosted)
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Google Apps Script
+                </div>
+                <div class="tool freemium">
+                  <div class="tool-dot"></div>
+                  Make.com
+                </div>
+                <div class="tool paid">
+                  <div class="tool-dot"></div>
+                  Zapier AI
+                </div>
+              </div>
+            </div>
+
+            <div class="scenarios-title">Scenarii practice</div>
+
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(200, 240, 96, 0.1); color: var(--accent)">1</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Email automat personalizat cu AI</div>
+                <div class="scenario-desc">
+                  Client completează formular de contact → Zapier preia datele → Claude API scrie un răspuns personalizat bazat pe întrebarea clientului → trimite automat din Gmail. Zero intervenție
+                  manuală.
+                </div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(200, 240, 96, 0.1); color: var(--accent)">2</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Programare întruniri din email/WhatsApp</div>
+                <div class="scenario-desc">
+                  Cineva scrie „Aș vrea să ne întâlnim joi la 15:00" → AI extrage data și ora → verifică Google Calendar → trimite confirmare + adaugă evenimentul automat.
+                </div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(200, 240, 96, 0.1); color: var(--accent)">3</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Creare formulare automate</div>
+                <div class="scenario-desc">Descriere în chat → Make.com + Google Forms API → formular creat cu toate câmpurile → link trimis automat pe email sau WhatsApp clientului.</div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(200, 240, 96, 0.1); color: var(--accent)">4</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Delegare sarcini repetitive</div>
+                <div class="scenario-desc">
+                  Rapoarte săptămânale generate automat din Google Sheets, facturi PDF create din template, notificări clienți trimise la date specifice — toate fără să apeși tu niciun buton.
+                </div>
+              </div>
+            </div>
+
+            <div class="prompt-block">
+              „Creează un workflow în Make.com care: (1) monitorizează un formular Google Forms, (2) când primesc un răspuns nou, extrage numele și întrebarea, (3) trimite datele la Claude API cu
+              promptul: 'Răspunde profesional la această întrebare de la un potențial client:', (4) trimite răspunsul pe email."
+            </div>
+
+            <div class="callout tip">
+              <span class="callout-icon">💡</span>
+              <div>
+                <strong>n8n vs Make vs Zapier:</strong> n8n e gratuit dacă îl rulezi pe server propriu (sau Render.com gratuit). Make are 1000 operații/lună gratuit. Zapier are 100/lună gratuit —
+                puțin, dar suficient pentru demo.
+              </div>
+            </div>
+          </section>
+
+          <hr />
+
+          <!-- ===== CHATBOȚI ===== -->
+          <section class="section" id="chatbot">
+            <div class="section-header">
+              <div class="section-icon" style="background: rgba(96, 96, 240, 0.1)">💬</div>
+              <div>
+                <h2 class="section-title">Chatboți AI pentru Clienți</h2>
+                <p class="section-subtitle">Site · WhatsApp · Instagram DM · 24/7 fără programator</p>
+              </div>
+              <span class="duration-tag">20 min</span>
+            </div>
+
+            <div class="tools-wrap">
+              <div class="tools-title">Instrumente</div>
+              <div class="tools-grid">
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Tidio (plan gratuit)
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Botpress (open source)
+                </div>
+                <div class="tool freemium">
+                  <div class="tool-dot"></div>
+                  Manychat
+                </div>
+                <div class="tool paid">
+                  <div class="tool-dot"></div>
+                  Voiceflow
+                </div>
+                <div class="tool freemium">
+                  <div class="tool-dot"></div>
+                  Chatbase
+                </div>
+              </div>
+            </div>
+
+            <div class="scenarios-title">Scenarii practice</div>
+
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(96, 96, 240, 0.1); color: #9090f0">A</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Chatbot pe site — răspunde la FAQ, colectează contacte</div>
+                <div class="scenario-desc">
+                  Tidio + AI: încarci documentul cu FAQ → chatbot-ul răspunde automat la întrebări frecvente. Dacă nu știe răspunsul, colectează email-ul și escaladează la tine.
+                </div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(96, 96, 240, 0.1); color: #9090f0">B</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Instagram DM Automation cu Manychat</div>
+                <div class="scenario-desc">
+                  Cineva comentează „VREAU" sau „INFO" sub o postare → primește automat un DM cu link, detalii produs și un buton de comandă. Rata de conversie crește semnificativ față de răspuns
+                  manual.
+                </div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(96, 96, 240, 0.1); color: #9090f0">C</div>
+              <div class="scenario-content">
+                <div class="scenario-title">WhatsApp Business cu AI</div>
+                <div class="scenario-desc">
+                  Botpress conectat la WhatsApp Business API: preia comenzi, trimite confirmare automată, urmărește statusul, escaladează la operator uman dacă clientul e nemulțumit sau pune o
+                  întrebare complicată.
+                </div>
+              </div>
+            </div>
+
+            <div class="callout info">
+              <span class="callout-icon">ℹ️</span>
+              <div>
+                <strong>Chatbase</strong> e cel mai simplu să pornești: încarci un PDF cu informații despre business → în 5 minute ai un chatbot gata de embed pe site. Plan gratuit: 20 mesaje/lună.
+              </div>
+            </div>
+          </section>
+
+          <hr />
+
+          <!-- ===== VIDEO AUTO POST ===== -->
+          <section class="section" id="video-auto">
+            <div class="section-header">
+              <div class="section-icon" style="background: rgba(240, 180, 96, 0.1)">📤</div>
+              <div>
+                <h2 class="section-title">Postare Automată Video Multi-Platform</h2>
+                <p class="section-subtitle">Incarci o dată → YT Shorts + IG Reels + TikTok simultan</p>
+              </div>
+              <span class="duration-tag">10 min</span>
+            </div>
+
+            <div class="tools-wrap">
+              <div class="tools-title">Instrumente</div>
+              <div class="tools-grid">
+                <div class="tool freemium">
+                  <div class="tool-dot"></div>
+                  Buffer
+                </div>
+                <div class="tool freemium">
+                  <div class="tool-dot"></div>
+                  Publer
+                </div>
+                <div class="tool paid">
+                  <div class="tool-dot"></div>
+                  Metricool
+                </div>
+                <div class="tool freemium">
+                  <div class="tool-dot"></div>
+                  Later
+                </div>
+              </div>
+            </div>
+
+            <div class="workflow">
+              <div class="workflow-step">
+                <div class="workflow-step-num">1</div>
+                <div class="workflow-step-body">
+                  <div class="workflow-step-title">Creezi video vertical (9:16)</div>
+                  <div class="workflow-step-desc">CapCut AI sau Canva → video scurt 15-60 sec cu subtitrare automată</div>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num">2</div>
+                <div class="workflow-step-body">
+                  <div class="workflow-step-title">Încarci în Buffer / Publer</div>
+                  <div class="workflow-step-desc">Un singur upload, selectezi toate platformele: YT Shorts, IG Reels, TikTok</div>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num">3</div>
+                <div class="workflow-step-body">
+                  <div class="workflow-step-title">AI generează caption adaptat per platformă</div>
+                  <div class="workflow-step-desc">Caption diferit pentru TikTok (casual, hashtag-uri), IG (mai lung, emoji), YT (titlu optimizat SEO)</div>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num">4</div>
+                <div class="workflow-step-body">
+                  <div class="workflow-step-title">Programezi data și ora</div>
+                  <div class="workflow-step-desc">Se publică automat la ora optimă — AI sugerează cel mai bun moment bazat pe audiența ta</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout tip">
+              <span class="callout-icon">💡</span>
+              <div><strong>Publer</strong> are plan gratuit pentru 1 workspace cu 3 conturi sociale. Suficient pentru a testa workflow-ul. Buffer are 3 canale gratuit.</div>
+            </div>
+          </section>
+
+          <hr />
+
+          <!-- ===== GRAFICE EDUCATIVE ===== -->
+          <section class="section" id="graphics">
+            <div class="section-header">
+              <div class="section-icon" style="background: rgba(200, 240, 96, 0.1)">📊</div>
+              <div>
+                <h2 class="section-title">Grafice & Imagini în Material Educativ</h2>
+                <p class="section-subtitle">Simplifică concepte cu vizualuri generate de AI</p>
+              </div>
+              <span class="duration-tag">15 min</span>
+            </div>
+
+            <div class="tools-wrap">
+              <div class="tools-title">Instrumente</div>
+              <div class="tools-grid">
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Gemini (Imagen 3)
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  NotebookLM
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Qwen VL
+                </div>
+                <div class="tool freemium">
+                  <div class="tool-dot"></div>
+                  Napkin.ai
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Claude (diagrame SVG)
+                </div>
+              </div>
+            </div>
+
+            <div class="scenarios-title">Scenarii practice</div>
+
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(200, 240, 96, 0.1); color: var(--accent)">A</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Infografic din capitol de manual</div>
+                <div class="scenario-desc">
+                  Gemini: lipești textul capitolului → „Creează un infografic vizual care rezumă conceptele cheie. Include diagrame explicative pentru procesele principale." Export PNG sau SVG.
+                </div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(200, 240, 96, 0.1); color: var(--accent)">B</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Reinterpretare diagramă existentă</div>
+                <div class="scenario-desc">Qwen VL: faci screenshot la o diagramă complicată → „Rescrie această diagramă mai simplu, adaptat pentru elevi de clasa a 8-a, în română."</div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(200, 240, 96, 0.1); color: var(--accent)">C</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Diagramă flux / proces cu Napkin.ai</div>
+                <div class="scenario-desc">Napkin.ai: lipești text descriptiv → generează automat o diagramă de flux vizuală. Ideal pentru procese, cicluri, algoritmi.</div>
+              </div>
+            </div>
+
+            <div class="prompt-block">
+              „Pe baza acestui text despre fotosinteza, creează: (1) o diagramă simplă cu intrările și ieșirile procesului, (2) o imagine care să arate unde are loc fotosinteza în frunză, (3) o
+              comparație vizuală între faza luminoasă și faza întunecată. Stilul vizual: educativ, colorat, potrivit pentru elevi de 14 ani."
+            </div>
+          </section>
+
+          <hr />
+
+          <!-- ===== QUIZ ===== -->
+          <section class="section" id="quiz">
+            <div class="section-header">
+              <div class="section-icon" style="background: rgba(96, 200, 240, 0.1)">✅</div>
+              <div>
+                <h2 class="section-title">Blocuri de Autoevaluare & Quiz</h2>
+                <p class="section-subtitle">Quiz-uri automate generate din materialul tău educativ</p>
+              </div>
+              <span class="duration-tag">15 min</span>
+            </div>
+
+            <div class="tools-wrap">
+              <div class="tools-title">Instrumente</div>
+              <div class="tools-grid">
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  NotebookLM
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  NotebookLM Quiz Exporter (extensie Chrome)
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Claude API
+                </div>
+            </div>
+
+            <div class="callout info">
+              <span class="callout-icon">🔌</span>
+              <div>
+                <strong>Extensia NotebookLM Quiz Exporter:</strong> Instalezi din Chrome Web Store (gratuit). Exportă quiz-urile generate de NotebookLM direct în format JSON sau CSV.
+              </div>
+            </div>
+
+            <div class="scenarios-title">Workflow complet</div>
+            <div class="workflow">
+              <div class="workflow-step">
+                <div class="workflow-step-num">1</div>
+                <div class="workflow-step-body">
+                  <div class="workflow-step-title">Încarci PDF-ul cursului în NotebookLM</div>
+                  <div class="workflow-step-desc">notebooklm.google.com → New notebook → Add source (PDF, doc, URL)</div>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num">2</div>
+                <div class="workflow-step-body">
+                  <div class="workflow-step-title">Generezi „Study Guide"</div>
+                  <div class="workflow-step-desc">Click pe „Study Guide" din panoul dreapta → NotebookLM extrage concepte cheie și creează întrebări</div>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num">3</div>
+                <div class="workflow-step-body">
+                  <div class="workflow-step-title">Exporti cu extensia Chrome <a href="https://nlmexporter.keeman.app/" target="_blank">NotebookLM Quiz Exporter</a> sau <a href="https://chromewebstore.google.com/detail/notebooklm-ultra-exporter/afchokljnhhggkhedfbmkcmdagjmjchj" target="_blank">NotebookLM Ultra Exporter</a></div>
+                  <div class="workflow-step-desc">Activezi extensia → click Export → alegi format: JSON, Word, Kahoot</div>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num">4</div>
+                <div class="workflow-step-body">
+                  <div class="workflow-step-title">Integrezi în curs (Moodle / link direct)</div>
+                  <div class="workflow-step-desc">Quiz-ul e gata. Trimiți link-ul studenților sau îl embed-ezi în platforma ta.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="prompt-block">
+              „Pe baza acestui material, creează 10 întrebări de autoevaluare cu 4 variante de răspuns (A, B, C, D). Distribuit astfel: 3 întrebări ușoare (definiții), 5 medii (aplicare concepte), 2
+              dificile (analiză și sinteză). Include explicația răspunsului corect pentru fiecare întrebare."
+            </div>
+          </section>
+
+          <hr />
+
+          <!-- ===== GAPS ===== -->
+          <section class="section" id="gaps">
+            <div class="section-header">
+              <div class="section-icon" style="background: rgba(240, 180, 96, 0.1)">🔍</div>
+              <div>
+                <h2 class="section-title">Depistarea Lacunelor din Material</h2>
+                <p class="section-subtitle">Top 5 concepte slab explicate — „de ce sunt ele aici?"</p>
+              </div>
+              <span class="duration-tag">15 min</span>
+            </div>
+
+            <div class="tools-wrap">
+              <div class="tools-title">Instrumente</div>
+              <div class="tools-grid">
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Gemini Deep Research
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Perplexity Deep Research
+                </div>
+                <div class="tool freemium">
+                  <div class="tool-dot"></div>
+                  Grok DeepSearch
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  NotebookLM (analiză)
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Claude (analiză text)
+                </div>
+              </div>
+            </div>
+
+            <div class="scenarios-title">Scenarii practice</div>
+
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(240, 180, 96, 0.1); color: var(--warn)">A</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Analiza lacunelor cu Gemini</div>
+                <div class="scenario-desc">
+                  Lipești materialul + promptul de analiză → Gemini identifică conceptele introduse fără suficient context. Returnează o listă cu recomandări de completare.
+                </div>
+              </div>
+            </div>
+            <div class="scenario">
+              <div class="scenario-num" style="background: rgba(240, 180, 96, 0.1); color: var(--warn)">B</div>
+              <div class="scenario-content">
+                <div class="scenario-title">Completare automată cu Perplexity</div>
+                <div class="scenario-desc">
+                  Perplexity Deep Research: pentru fiecare lacună identificată, caută surse externe actuale → generează un paragraf de completare cu citări. Economisești ore de cercetare.
+                </div>
+              </div>
+            </div>
+
+            <div class="prompt-block">
+              „Analizează acest material educativ. Identifică top 5 concepte care apar în text dar au cel mai puțin context explicativ — adică sunt menționate fără a se explica: (1) de ce sunt
+              relevante, (2) ce problemă rezolvă, (3) cum se leagă de celelalte concepte. Pentru fiecare, sugerează ce informație suplimentară ar ajuta studentul."
+            </div>
+
+            <div class="callout tip">
+              <span class="callout-icon">💡</span>
+              <div>
+                <strong>Strategie combinată:</strong> Folosește Claude pentru analiza lacunelor (e mai bun la analiză text lungă), apoi Perplexity pentru a găsi surse actuale care completează fiecare
+                lacună. Rezultatul: material educativ actualizat fără cercetare manuală.
+              </div>
+            </div>
+          </section>
+
+          <hr />
+
+          <!-- ===== SECURITATE ===== -->
+          <section class="section" id="security">
+            <div class="section-header">
+              <div class="section-icon" style="background: rgba(180, 180, 180, 0.1)">🔒</div>
+              <div>
+                <h2 class="section-title">Protejarea Proiectului tău AI</h2>
+                <p class="section-subtitle">Dacă publici — cum te protejezi de furt, atacuri și abuz?</p>
+              </div>
+              <span class="duration-tag">10 min</span>
+            </div>
+
+            <div class="tools-wrap">
+              <div class="tools-title">Instrumente</div>
+              <div class="tools-grid">
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Cloudflare (plan gratuit)
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  GitHub Private Repo
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  Licență Creative Commons
+                </div>
+                <div class="tool free">
+                  <div class="tool-dot"></div>
+                  .env pentru chei API
+                </div>
+                <div class="tool paid">
+                  <div class="tool-dot"></div>
+                  DMCA.com
+                </div>
+              </div>
+            </div>
+
+            <table class="wiki-table">
+              <thead>
+                <tr>
+                  <th>Risc</th>
+                  <th>Soluție</th>
+                  <th>Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Atac DDoS pe site</td>
+                  <td>Cloudflare gratuit — activezi în 5 min</td>
+                  <td>Gratuit</td>
+                </tr>
+                <tr>
+                  <td>Cheie API expusă public</td>
+                  <td>Fișier .env + GitHub .gitignore</td>
+                  <td>Gratuit</td>
+                </tr>
+                <tr>
+                  <td>Conținut copiat fără permisiune</td>
+                  <td>Licență CC în footer + watermark pe imagini</td>
+                  <td>Gratuit</td>
+                </tr>
+                <tr>
+                  <td>Cod furat din repo</td>
+                  <td>GitHub Private Repository</td>
+                  <td>Gratuit</td>
+                </tr>
+                <tr>
+                  <td>DMCA takedown dacă cineva fură</td>
+                  <td>DMCA.com — trimite notificări automate</td>
+                  <td>Plătit</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="callout warn">
+              <span class="callout-icon">⚠️</span>
+              <div>
+                <strong>Regula #1:</strong> Nu pune niciodată chei API (OpenAI, Anthropic, Google) în cod public sau în repository GitHub public. Cineva le poate găsi în minute și genera costuri
+                enorme pe contul tău. Folosește fișiere .env sau variabile de mediu pe serverul de hosting.
+              </div>
+            </div>
+
+            <div class="callout tip">
+              <span class="callout-icon">💡</span>
+              <div>
+                <strong>Cloudflare gratuit</strong> include: HTTPS automat, protecție DDoS, cache global, blocare boți malițioși. Suficient pentru 99% din proiectele mici. Adaugi domeniul tău →
+                schimbi nameservers → gata în 10 minute.
+              </div>
+            </div>
+          </section>
+
+          <hr />
+
+          <!-- ÎNCHEIERE -->
+          <section class="section" id="close" style="margin-bottom: 80px">
+            <div class="intro-block">
+              <div class="quote">Bring Your Own <span>Problem</span></div>
+              <p style="font-size: 14px; color: #aaa; font-weight: 300; margin-bottom: 16px">
+                Fiecare participant prezintă problema sa → grupul sugerează instrumentul potrivit din acest ghid. Nu există „cel mai bun AI" — există cel mai potrivit pentru task-ul tău.
+              </p>
+              <div style="display: flex; gap: 12px; flex-wrap: wrap">
+                <span style="font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(200, 240, 96, 0.3); color: var(--accent)">Q&A — 15 min</span>
+                <span style="font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border2); color: var(--muted)">Site cu toate link-urile</span>
+                <span style="font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border2); color: var(--muted)">Feedback suport post-workshop</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // Active nav link on scroll
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-link");
+      const progress = document.getElementById("reading-progress");
+
+      function updateNav() {
+        const scrollY = window.scrollY;
+        const docH = document.body.scrollHeight - window.innerHeight;
+        progress.style.width = (scrollY / docH) * 100 + "%";
+
+        let current = "";
+        sections.forEach((sec) => {
+          if (scrollY >= sec.offsetTop - 80) current = sec.id;
+        });
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === "#" + current) link.classList.add("active");
+        });
+      }
+
+      window.addEventListener("scroll", updateNav, { passive: true });
+
+      // Smooth scroll
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute("href"));
+          if (target) target.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    </script>
+  </body>
+</html>
