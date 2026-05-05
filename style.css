@@ -54,7 +54,14 @@ nav {
   padding: 24px 20px 16px;
   border-bottom: 1px solid var(--border);
 }
-.nav-logo-title {
+.nav-logo-title{
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+.nav-logo-title a {
   font-family: "Syne", sans-serif;
   font-weight: 800;
   font-size: 17px;
