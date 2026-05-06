@@ -1,1469 +1,1839 @@
 <!doctype html>
 <html lang="ro">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BYOP Workshop - Ghid Productie Audiovizuala AI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      :root {
-        --color-text-primary: var(--text);
-        --color-text-secondary: var(--muted);
-        --color-text-info: var(--accent2);
-        --color-text-success: var(--accent);
-        --color-text-warning: var(--warn);
-        --color-border-tertiary: var(--border);
-        --color-border-info: var(--accent2);
-        --color-background-primary: var(--bg2);
-        --color-background-secondary: var(--bg3);
-        --color-background-info: rgba(96, 200, 240, 0.1);
-        --color-background-success: rgba(200, 240, 96, 0.1);
-        --color-background-warning: rgba(240, 180, 96, 0.12);
-        --border-radius-md: 8px;
-        --border-radius-lg: 12px;
-      }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BYOP Workshop - Ghid Productie Audiovizuala AI</title>
+        <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="style.css" />
+        <style>
+            :root {
+                --color-text-primary: var(--text);
+                --color-text-secondary: var(--muted);
+                --color-text-info: var(--accent2);
+                --color-text-success: var(--accent);
+                --color-text-warning: var(--warn);
+                --color-border-tertiary: var(--border);
+                --color-border-info: var(--accent2);
+                --color-background-primary: var(--bg2);
+                --color-background-secondary: var(--bg3);
+                --color-background-info: rgba(96, 200, 240, 0.1);
+                --color-background-success: rgba(200, 240, 96, 0.1);
+                --color-background-warning: rgba(240, 180, 96, 0.12);
+                --border-radius-md: 8px;
+                --border-radius-lg: 12px;
+            }
 
-      body {
-        background: var(--bg);
-      }
+            body {
+                background: var(--bg);
+            }
 
-      #reading-progress {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        height: 3px;
-        width: 0;
-        background: linear-gradient(90deg, var(--accent2), var(--accent));
-      }
+            #reading-progress {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                height: 3px;
+                width: 0;
+                background: linear-gradient(90deg, var(--accent2), var(--accent));
+            }
 
-      .container {
-        width: 100%;
-        padding: 0;
-      }
+            .container {
+                width: 100%;
+                padding: 0;
+            }
 
-      .header {
-        margin: 0 0 1.5rem;
-        padding: 14px 16px;
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        background: rgba(96, 200, 240, 0.06);
-      }
+            .header {
+                margin: 0 0 1.5rem;
+                padding: 14px 16px;
+                border: 1px solid var(--border);
+                border-radius: 10px;
+                background: rgba(96, 200, 240, 0.06);
+            }
 
-      .header h1 {
-        font-size: 20px;
-        font-weight: 600;
-        color: var(--color-text-primary);
-        margin: 0 0 0.35rem;
-      }
+            .header h1 {
+                font-size: 20px;
+                font-weight: 600;
+                color: var(--color-text-primary);
+                margin: 0 0 0.35rem;
+            }
 
-      .header p {
-        font-size: 13px;
-        color: var(--color-text-secondary);
-        margin: 0;
-      }
+            .header p {
+                font-size: 13px;
+                color: var(--color-text-secondary);
+                margin: 0;
+            }
 
-      .filters {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 0 0 2rem;
-      }
+            .filters {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin: 0 0 2rem;
+            }
 
-      .filter-btn {
-        padding: 8px 16px;
-        border: 1px solid var(--color-border-tertiary);
-        border-radius: var(--border-radius-md);
-        background: var(--color-background-primary);
-        color: var(--color-text-primary);
-        font-size: 13px;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
+            .filter-btn {
+                padding: 8px 16px;
+                border: 1px solid var(--color-border-tertiary);
+                border-radius: var(--border-radius-md);
+                background: var(--color-background-primary);
+                color: var(--color-text-primary);
+                font-size: 13px;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
 
-      .filter-btn:hover {
-        background: var(--color-background-secondary);
-      }
+            .filter-btn:hover {
+                background: var(--color-background-secondary);
+            }
 
-      .filter-btn.active {
-        background: var(--color-background-info);
-        color: var(--color-text-info);
-        border-color: var(--color-text-info);
-      }
+            .filter-btn.active {
+                background: var(--color-background-info);
+                color: var(--color-text-info);
+                border-color: var(--color-text-info);
+            }
 
-      .tools-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 16px;
-        margin: 0 0 2rem;
-      }
+            .tools-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 16px;
+                margin: 0 0 2rem;
+            }
 
-      .tool-card {
-        background: var(--color-background-primary);
-        border: 1px solid var(--color-border-tertiary);
-        border-radius: var(--border-radius-lg);
-        padding: 1.1rem;
-      }
+            .tool-card {
+                background: var(--color-background-primary);
+                border: 1px solid var(--color-border-tertiary);
+                border-radius: var(--border-radius-lg);
+                padding: 1.1rem;
+            }
 
-      .tool-card h3 {
-        font-size: 15px;
-        font-weight: 600;
-        color: var(--color-text-primary);
-        margin: 0;
-      }
+            .tool-card h3 {
+                font-size: 15px;
+                font-weight: 600;
+                color: var(--color-text-primary);
+                margin: 0;
+            }
 
-      .tool-name {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        margin-bottom: 10px;
-      }
+            .tool-name {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+                margin-bottom: 10px;
+            }
 
-      .badge {
-        display: inline-block;
-        font-size: 11px;
-        padding: 4px 8px;
-        border-radius: 999px;
-        font-weight: 600;
-      }
+            .badge {
+                display: inline-block;
+                font-size: 11px;
+                padding: 4px 8px;
+                border-radius: 999px;
+                font-weight: 600;
+            }
 
-      .badge.free {
-        background: var(--color-background-success);
-        color: var(--color-text-success);
-      }
+            .badge.free {
+                background: var(--color-background-success);
+                color: var(--color-text-success);
+            }
 
-      .badge.paid {
-        background: var(--color-background-warning);
-        color: var(--color-text-warning);
-      }
+            .badge.paid {
+                background: var(--color-background-warning);
+                color: var(--color-text-warning);
+            }
 
-      .badge.freemium {
-        background: var(--color-background-info);
-        color: var(--color-text-info);
-      }
+            .badge.freemium {
+                background: var(--color-background-info);
+                color: var(--color-text-info);
+            }
 
-      .price {
-        font-size: 12px;
-        color: var(--color-text-secondary);
-        margin: 0 0 8px;
-      }
+            .price {
+                font-size: 12px;
+                color: var(--color-text-secondary);
+                margin: 0 0 8px;
+            }
 
-      .price strong {
-        color: var(--color-text-primary);
-      }
+            .price strong {
+                color: var(--color-text-primary);
+            }
 
-      .description {
-        font-size: 13px;
-        line-height: 1.55;
-        color: var(--color-text-secondary);
-        margin: 0 0 12px;
-      }
+            .description {
+                font-size: 13px;
+                line-height: 1.55;
+                color: var(--color-text-secondary);
+                margin: 0 0 12px;
+            }
 
-      .features {
-        font-size: 12px;
-        line-height: 1.5;
-        margin: 0 0 12px;
-        color: var(--text);
-      }
+            .features {
+                font-size: 12px;
+                line-height: 1.5;
+                margin: 0 0 12px;
+                color: var(--text);
+            }
 
-      .features li {
-        margin: 0 0 4px 16px;
-      }
+            .features li {
+                margin: 0 0 4px 16px;
+            }
 
-      .tutorial {
-        background: var(--color-background-secondary);
-        border-left: 3px solid var(--color-border-info);
-        padding: 12px;
-        border-radius: 4px;
-        font-size: 12px;
-        line-height: 1.6;
-        margin: 12px 0 0;
-      }
+            .tutorial {
+                background: var(--color-background-secondary);
+                border-left: 3px solid var(--color-border-info);
+                padding: 12px;
+                border-radius: 4px;
+                font-size: 12px;
+                line-height: 1.6;
+                margin: 12px 0 0;
+            }
 
-      .tutorial strong {
-        color: var(--color-text-info);
-      }
+            .tutorial strong {
+                color: var(--color-text-info);
+            }
 
-      .category {
-        margin: 2rem 0 0;
-        scroll-margin-top: 20px;
-      }
+            .category {
+                margin: 2rem 0 0;
+                scroll-margin-top: 20px;
+            }
 
-      .category h2 {
-        font-family: "Syne", sans-serif;
-        font-size: 20px;
-        font-weight: 700;
-        color: var(--color-text-primary);
-        margin: 0 0 1rem;
-        padding: 1rem 0 0;
-        border-top: 1px solid var(--color-border-tertiary);
-      }
+            .category h2 {
+                font-family: "Syne", sans-serif;
+                font-size: 20px;
+                font-weight: 700;
+                color: var(--color-text-primary);
+                margin: 0 0 1rem;
+                padding: 1rem 0 0;
+                border-top: 1px solid var(--color-border-tertiary);
+            }
 
-      .hidden {
-        display: none;
-      }
+            .hidden {
+                display: none;
+            }
 
-      @media (max-width: 1024px) {
-        .content {
-          padding: 32px 20px;
-        }
+            @media (max-width: 1024px) {
+                .content {
+                    padding: 32px 20px;
+                }
 
-        .hero {
-          padding: 38px 20px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="reading-progress"></div>
-    <div class="shell">
-      <nav id="sidebar">
-        <div class="nav-logo">
-          <div class="nav-logo-title"><a href="index.html">BYOP Workshop</a></div>
-          <div class="nav-logo-sub">Subpagină · Ghid Audiovizual</div>
+                .hero {
+                    padding: 38px 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="reading-progress"></div>
+        <div class="shell">
+            <nav id="sidebar">
+                <div class="nav-logo">
+                    ← BYOP Workshop
+                    <div class="nav-logo-sub">Subpagină · Ghid Audiovizual</div>
+                </div>
+
+                <div class="nav-section-label">Navigare</div>
+                <a href="index.html#av" class="nav-link">
+                    <span class="nav-icon">↩</span>
+                    Înapoi la workshop
+                </a>
+                <a href="#category-1" class="nav-link active">
+                    <span class="nav-icon">🎥</span>
+                    Creare conținut
+                </a>
+                <a href="#category-2" class="nav-link">
+                    <span class="nav-icon">✂️</span>
+                    Redactare video
+                </a>
+                <a href="#category-3" class="nav-link">
+                    <span class="nav-icon">📝</span>
+                    Subtitrare
+                </a>
+                <a href="#category-4" class="nav-link">
+                    <span class="nav-icon">🎵</span>
+                    Sonorizare
+                </a>
+                <a href="#category-5" class="nav-link">
+                    <span class="nav-icon">🎨</span>
+                    Generare imagini
+                </a>
+                <a href="#category-6" class="nav-link">
+                    <span class="nav-icon">🎬</span>
+                    Animatii
+                </a>
+                <a href="#category-7" class="nav-link">
+                    <span class="nav-icon">📢</span>
+                    Promovare
+                </a>
+                <a href="#category-8" class="nav-link">
+                    <span class="nav-icon">💰</span>
+                    Monetizare
+                </a>
+
+                <div class="nav-footer">
+                    <div>Filtrare rapida: toate, gratuite, cu plata</div>
+                    <div style="margin-top: 6px">Actualizat mai 2026</div>
+                </div>
+            </nav>
+
+            <main id="main">
+                <div class="hero">
+                    <div class="hero-eyebrow">Subpagină workshop</div>
+                    <h1 class="hero-title">
+                        Conținut Audiovizual
+                        <span>100% cu AI</span>
+                    </h1>
+                    <p class="hero-desc">Catalog complet de instrumente, filtre rapide și mini-tutoriale pentru workflow end-to-end: creare, editare, subtitrare, distribuție și monetizare.</p>
+                    <div class="hero-meta">
+                        <span class="hero-badge green">Ghid extins din secțiunea AV</span>
+                        <span class="hero-badge blue">8 categorii</span>
+                        <span class="hero-badge">Gratuit / Freemium / Plătit</span>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="container">
+                        <div class="header">
+                            <h1>🎬 Ghid Complet: Producție Audiovizuală 100% cu AI</h1>
+                            <p>Instrumente gratuite și cu plată, cu tutoriale detaliate pentru fiecare etapă</p>
+                        </div>
+
+                        <div class="filters">
+                            <button class="filter-btn active" data-filter="all">Toate instrumentele</button>
+                            <button class="filter-btn" data-filter="free">📱 Doar gratuite</button>
+                            <button class="filter-btn" data-filter="paid">💳 Cu plată</button>
+                        </div>
+
+                        <!-- CREAREA CONȚINUTULUI -->
+                        <div class="category">
+                            <h2>1. 🎥 Crearea Conținutului Audiovizual</h2>
+
+                            <div class="tools-grid">
+                                <!-- Synthesia -->
+                                <div class="tool-card" data-type="paid,freemium">
+                                    <div class="tool-name">
+                                        <h3>Synthesia</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: 1 video/lună |
+                                        <strong>Paid: $30-90/lună</strong>
+                                    </div>
+                                    <p class="description">Generator de video cu AI cu prezentatori virtuali realisti, suporta 150+ limbi.</p>
+                                    <ul class="features">
+                                        <li>Prezentatori avatari fotorealistici</li>
+                                        <li>Text-to-video în orice limbă</li>
+                                        <li>Branduire personalizată</li>
+                                        <li>Export HD/4K</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Înregistrați text sau script → AI generează video
+                                        <br />
+                                        2. Alegeți avatar și limbă
+                                        <br />
+                                        3. Personalizați background și text pe ecran
+                                        <br />
+                                        4. Export și distribuire
+                                    </div>
+                                </div>
+
+                                <!-- D-ID -->
+                                <div class="tool-card" data-type="paid,freemium">
+                                    <div class="tool-name">
+                                        <h3>D-ID</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: 5 min/lună |
+                                        <strong>Paid: $25-100/lună</strong>
+                                    </div>
+                                    <p class="description">Animează orice imagine cu mișcări realiste pe bază de AI.</p>
+                                    <ul class="features">
+                                        <li>Animează imagini statice</li>
+                                        <li>Sincronizare labiale (lip-sync)</li>
+                                        <li>Suportă orice limbă</li>
+                                        <li>Exportare HD</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Încărcați imagine (portret, celebrity foto)
+                                        <br />
+                                        2. Adăugați audio (text-to-speech sau propriul audio)
+                                        <br />
+                                        3. AI sincronizează expresia și buzele
+                                        <br />
+                                        4. Download video
+                                    </div>
+                                </div>
+
+                                <!-- Runway Gen-3 -->
+                                <div class="tool-card" data-type="paid,freemium">
+                                    <div class="tool-name">
+                                        <h3>Runway Gen-3</h3>
+                                        <span class="badge paid">Paid</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>$12-76/lună</strong>
+                                        (credit-based)
+                                    </div>
+                                    <p class="description">Generator video puternic din text, imagini sau video scurt.</p>
+                                    <ul class="features">
+                                        <li>Text-to-video profesional</li>
+                                        <li>Image-to-video animație</li>
+                                        <li>Video extend și magic edit</li>
+                                        <li>Control cinematografic avansat</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Scrieți prompt detaliat (scenă, stil, acțiune)
+                                        <br />
+                                        2. Setați durata și aspect ratio
+                                        <br />
+                                        3. Alegeți model (Gen-3, Gen-2)
+                                        <br />
+                                        4. Așteptați generare (1-3 min)
+                                        <br />
+                                        5. Editare cu magic tools
+                                    </div>
+                                </div>
+
+                                <!-- HeyGen -->
+                                <div class="tool-card" data-type="paid,freemium">
+                                    <div class="tool-name">
+                                        <h3>HeyGen</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: 3 videoURL |
+                                        <strong>Paid: $25-99/lună</strong>
+                                    </div>
+                                    <p class="description">Video personalizate cu AI avatari, ideal pentru marketing și e-learning.</p>
+                                    <ul class="features">
+                                        <li>200+ AI avatari realiști</li>
+                                        <li>Batch processing pentru campanii</li>
+                                        <li>Custom avatar upload</li>
+                                        <li>Suport 70+ limbi</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Selectați avatar și limbă
+                                        <br />
+                                        2. Scrieți script (suporta variabile {{name}})
+                                        <br />
+                                        3. Importați CSV pentru personalizare în masă
+                                        <br />
+                                        4. Generare automată pentru 1000+ variante
+                                    </div>
+                                </div>
+
+                                <!-- Pika Labs -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>Pika Labs</h3>
+                                        <span class="badge free">Gratuit (Beta)</span>
+                                    </div>
+                                    <div class="price">
+                                        Credit limitat zilnic,
+                                        <strong>Paid: ~$10/lună</strong>
+                                        viitor
+                                    </div>
+                                    <p class="description">Generator video rapid din text, cu stil și control bun.</p>
+                                    <ul class="features">
+                                        <li>Text-to-video rapid (30 sec)</li>
+                                        <li>Diverse style presets</li>
+                                        <li>Discord bot integration</li>
+                                        <li>Community support</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Accesați Pika via Discord bot
+                                        <br />
+                                        2. Tastați /create + prompt
+                                        <br />
+                                        3. Alegeți aspect ratio și stil
+                                        <br />
+                                        4. Video gata în 30-60 secunde
+                                    </div>
+                                </div>
+
+                                <!-- Suno AI (Audio) -->
+                                <div class="tool-card" data-type="free,paid">
+                                    <div class="tool-name">
+                                        <h3>Suno AI</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: 50 credit/lună |
+                                        <strong>Paid: $10/lună</strong>
+                                    </div>
+                                    <p class="description">Generator de muzică și cântece cu AI, perfect pentru BGM.</p>
+                                    <ul class="features">
+                                        <li>Generează melodii complete cu versuri</li>
+                                        <li>Orice gen și stil musical</li>
+                                        <li>Custom lyrics input</li>
+                                        <li>Royalty-free pentru comercial</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Descrieți piesa (gen, mood, temă)
+                                        <br />
+                                        2. Opțional: adăugați versuri personalizate
+                                        <br />
+                                        3. Alegeți stilul vocal
+                                        <br />
+                                        4. Așteptați generare (1-2 min)
+                                        <br />
+                                        5. Download și utilizare comercială
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- REDACTARE ȘI EDITARE -->
+                        <div class="category">
+                            <h2>2. ✂️ Redactare și Editare de Video</h2>
+
+                            <div class="tools-grid">
+                                <!-- CapCut -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>CapCut</h3>
+                                        <span class="badge free">Gratuit</span>
+                                    </div>
+                                    <div class="price">
+                                        Versiune Web/App:
+                                        <strong>100% Gratuit</strong>
+                                    </div>
+                                    <p class="description">Editor de video profesional gratuit cu AI effects, tăieturi automate.</p>
+                                    <ul class="features">
+                                        <li>Tăieturi automate pe bază de AI</li>
+                                        <li>Efecte și filtre unlimited</li>
+                                        <li>Text-to-speech și traduție automată</li>
+                                        <li>Background removal cu AI</li>
+                                        <li>Watermark opțional</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Importați video brut
+                                        <br />
+                                        2. Folosiți "Auto Captions" → selectați limbă
+                                        <br />
+                                        3. Aplicați tăieturi de liniște cu AI
+                                        <br />
+                                        4. Adăugați muzică și efecte
+                                        <br />
+                                        5. Export HD fără watermark
+                                    </div>
+                                </div>
+
+                                <!-- Adobe Firefly (Premiere Pro) -->
+                                <div class="tool-card" data-type="paid">
+                                    <div class="tool-name">
+                                        <h3>Adobe Firefly + Premiere Pro</h3>
+                                        <span class="badge paid">Paid</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>$55/lună</strong>
+                                        (Creative Cloud Single App)
+                                    </div>
+                                    <p class="description">Suite profesională cu AI Generative Fill, Remove Tool.</p>
+                                    <ul class="features">
+                                        <li>Generative Fill pentru background</li>
+                                        <li>Remove Tool cu AI</li>
+                                        <li>Auto color grading</li>
+                                        <li>Speech-to-text și sync</li>
+                                        <li>4K/8K support</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Importați footage în Premiere Pro
+                                        <br />
+                                        2. Selectați zona problematică
+                                        <br />
+                                        3. Firefly → Remove/Fill automat
+                                        <br />
+                                        4. Color correction automated
+                                        <br />
+                                        5. Export cu codec optimal
+                                    </div>
+                                </div>
+
+                                <!-- Descript -->
+                                <div class="tool-card" data-type="paid,freemium">
+                                    <div class="tool-name">
+                                        <h3>Descript</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: video < 1 GB |
+                                        <strong>Paid: $24/lună</strong>
+                                    </div>
+                                    <p class="description">Editor video text-based, editezi transcript și video se updatează automat.</p>
+                                    <ul class="features">
+                                        <li>Transcriere automată (150+ limbi)</li>
+                                        <li>Editare ca text document</li>
+                                        <li>Overdub (regenerare voce)</li>
+                                        <li>Screen recording built-in</li>
+                                        <li>Podcast editing</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Upload video/podcast
+                                        <br />
+                                        2. Transcriere automată în 1-2 min
+                                        <br />
+                                        3. Editați transcript (ștergeți linii = video se taie)
+                                        <br />
+                                        4. Overdub pentru corecții vocale
+                                        <br />
+                                        5. Export video sincronizat
+                                    </div>
+                                </div>
+
+                                <!-- DaVinci Resolve -->
+                                <div class="tool-card" data-type="free,paid">
+                                    <div class="tool-name">
+                                        <h3>DaVinci Resolve Studio</h3>
+                                        <span class="badge free">Gratuit (Community)</span>
+                                    </div>
+                                    <div class="price">
+                                        Community:
+                                        <strong>Gratuit</strong>
+                                        | Studio:
+                                        <strong>€295 one-time</strong>
+                                    </div>
+                                    <p class="description">Profesional color grading și editing, folosit de studiourile Hollywood.</p>
+                                    <ul class="features">
+                                        <li>Professional timeline editing</li>
+                                        <li>Industry-standard color grading</li>
+                                        <li>Fusion VFX built-in</li>
+                                        <li>Fairlight audio suite</li>
+                                        <li>AI noise removal (Studio)</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. New Project → setați resolution
+                                        <br />
+                                        2. Media Pool: importați footage
+                                        <br />
+                                        3. Edit page: build timeline
+                                        <br />
+                                        4. Color page: grade și color correct
+                                        <br />
+                                        5. Deliver: export cu codec optimal
+                                    </div>
+                                </div>
+
+                                <!-- Opus Clip / Recut -->
+                                <div class="tool-card" data-type="paid,freemium">
+                                    <div class="tool-name">
+                                        <h3>Opus Clip / Recut AI</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: 5/lună |
+                                        <strong>Paid: $30/lună</strong>
+                                    </div>
+                                    <p class="description">Transforma video lungă în clipuri virale scurte, optimizate per platform.</p>
+                                    <ul class="features">
+                                        <li>Auto-detectare momente cheie</li>
+                                        <li>Optimizare TikTok/YouTube Shorts</li>
+                                        <li>Captions și B-roll automat</li>
+                                        <li>Hook detection</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Upload video lungă (podcast, interview)
+                                        <br />
+                                        2. AI detectează momente virale
+                                        <br />
+                                        3. Alegeri optime per platform
+                                        <br />
+                                        4. Captions + efecte automat
+                                        <br />
+                                        5. Batch export pentru toate platformele
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SUBTITRARE ȘI TRADUCȚIE -->
+                        <div class="category">
+                            <h2>3. 📝 Subtitrare și Traducție Automată</h2>
+
+                            <div class="tools-grid">
+                                <!-- Descript (already above, but subtitle feature) -->
+                                <div class="tool-card" data-type="paid,freemium">
+                                    <div class="tool-name">
+                                        <h3>Rev.com</h3>
+                                        <span class="badge paid">Paid</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>$1.25/min</strong>
+                                        transcriere humană |
+                                        <strong>$0.25/min</strong>
+                                        AI
+                                    </div>
+                                    <p class="description">Transcriere și subtitrare de inaltă calitate în 100+ limbi.</p>
+                                    <ul class="features">
+                                        <li>Subtitrare automată AI</li>
+                                        <li>Transcriere umană de inaltă calitate</li>
+                                        <li>Export SRT/VTT</li>
+                                        <li>Traducere în orice limbă</li>
+                                        <li>Speaker identification</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Upload video/audio
+                                        <br />
+                                        2. Selectați limbă și tip (AI/Uman)
+                                        <br />
+                                        3. Așteptați transcriere (minutes-ore)
+                                        <br />
+                                        4. Download SRT file
+                                        <br />
+                                        5. Sincronizare în CapCut/Premiere
+                                    </div>
+                                </div>
+
+                                <!-- ElevenLabs (dubbing) -->
+                                <div class="tool-card" data-type="paid">
+                                    <div class="tool-name">
+                                        <h3>ElevenLabs Dubbing</h3>
+                                        <span class="badge paid">Paid</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>Plan Creator: $11/lună</strong>
+                                        (dubbing inclus)
+                                    </div>
+                                    <p class="description">Dubez video în alte limbi cu aceeași voce și sincronizare perfectă.</p>
+                                    <ul class="features">
+                                        <li>AI dubbing în 25+ limbi</li>
+                                        <li>Păstrează voce originală stil</li>
+                                        <li>Sincronizare labială (lip-sync)</li>
+                                        <li>Export direct video</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Upload video pe ElevenLabs
+                                        <br />
+                                        2. Selectați limbă țintă
+                                        <br />
+                                        3. AI generează dubbing sincronizat
+                                        <br />
+                                        4. Personalizare voce (pitch, viteză)
+                                        <br />
+                                        5. Download video dubez
+                                    </div>
+                                </div>
+
+                                <!-- CapCut Auto Captions -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>CapCut Auto Captions</h3>
+                                        <span class="badge free">Gratuit</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>100% Gratuit</strong>
+                                        în CapCut
+                                    </div>
+                                    <p class="description">Subtitrare automată rapid în CapCut, 100+ limbi.</p>
+                                    <ul class="features">
+                                        <li>Subtitrare instant în 100+ limbi</li>
+                                        <li>Sincronizare automată perfectă</li>
+                                        <li>Stil text personalizabil</li>
+                                        <li>Exportare SRT</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. CapCut → Video layer → Text → Auto Caption
+                                        <br />
+                                        2. Selectați limba video-ului
+                                        <br />
+                                        3. IA generează captions sincronizate
+                                        <br />
+                                        4. Editați text dacă necesare
+                                        <br />
+                                        5. Personalizați font și culoare
+                                    </div>
+                                </div>
+
+                                <!-- Whisper (OpenAI) -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>OpenAI Whisper (API Gratuit)</h3>
+                                        <span class="badge free">Gratuit (Open Source)</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>Gratuit</strong>
+                                        + server costs minimal
+                                    </div>
+                                    <p class="description">Model open-source de transcriere, instalează local sau via API.</p>
+                                    <ul class="features">
+                                        <li>99 limbi suportate</li>
+                                        <li>Transcriere offline (local)</li>
+                                        <li>Timestamp automat</li>
+                                        <li>No subscription needed</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. pip install openai-whisper
+                                        <br />
+                                        2. whisper "video.mp3" --language ro
+                                        <br />
+                                        3. Output automat SRT/VTT
+                                        <br />
+                                        4. Import în editor video
+                                    </div>
+                                </div>
+
+                                <!-- Subtitle Edit (Local) -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>Subtitle Edit</h3>
+                                        <span class="badge free">Gratuit (Open Source)</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>Gratuit</strong>
+                                        (Windows/Mac/Linux)
+                                    </div>
+                                    <p class="description">Editor subtitrari complet, suportă toate formate.</p>
+                                    <ul class="features">
+                                        <li>Edita SRT, VTT, ASS, etc</li>
+                                        <li>Sincronizare manual/automat</li>
+                                        <li>Transcriere built-in (Whisper)</li>
+                                        <li>Spellcheck și traducere</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. File → New → selectați limbă
+                                        <br />
+                                        2. Video → importați file
+                                        <br />
+                                        3. Auto-transcriere via Whisper
+                                        <br />
+                                        4. Manual sync cu timeline
+                                        <br />
+                                        5. Export SRT/VTT final
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SONORIZARE ȘI AUDIO -->
+                        <div class="category">
+                            <h2>4. 🎵 Sonorizare și Audio Design</h2>
+
+                            <div class="tools-grid">
+                                <!-- ElevenLabs TTS -->
+                                <div class="tool-card" data-type="paid,freemium">
+                                    <div class="tool-name">
+                                        <h3>ElevenLabs Text-to-Speech</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: 10k caractere/lună |
+                                        <strong>Creator: $11/lună</strong>
+                                    </div>
+                                    <p class="description">Voce AI cea mai realistă, 100+ voci în 30+ limbi.</p>
+                                    <ul class="features">
+                                        <li>Voci naturale și expresive</li>
+                                        <li>Voice cloning (copie propria voce)</li>
+                                        <li>Emotion & style control</li>
+                                        <li>API integration</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Scrieți text în ElevenLabs
+                                        <br />
+                                        2. Selectați voce și limbă
+                                        <br />
+                                        3. Ajustați prosody (pitch, speed)
+                                        <br />
+                                        4. Ascultați preview
+                                        <br />
+                                        5. Download MP3/WAV
+                                    </div>
+                                </div>
+
+                                <!-- Google NotebookLM -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>Google NotebookLM Podcast</h3>
+                                        <span class="badge free">Gratuit</span>
+                                    </div>
+                                    <div class="price"><strong>100% Gratuit</strong></div>
+                                    <p class="description">Transforma text/document în podcast audio cu voci naturale.</p>
+                                    <ul class="features">
+                                        <li>Podcast generation din text</li>
+                                        <li>Conversație naturală AI</li>
+                                        <li>Background music automat</li>
+                                        <li>Multiple voices</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. NotebookLM.google.com
+                                        <br />
+                                        2. Paste text/upload document
+                                        <br />
+                                        3. Click "Audio Overview"
+                                        <br />
+                                        4. AI generează podcast 5-10 min
+                                        <br />
+                                        5. Download MP3 direct
+                                    </div>
+                                </div>
+
+                                <!-- Suno AI (Music) -->
+                                <div class="tool-card" data-type="free,paid">
+                                    <div class="tool-name">
+                                        <h3>Suno AI (Background Music)</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: 50 credit/lună |
+                                        <strong>$10/lună</strong>
+                                    </div>
+                                    <p class="description">Generează muzică de fundal în orice stil și tempo.</p>
+                                    <ul class="features">
+                                        <li>Generare muzică infinită</li>
+                                        <li>Orice gen și tempo</li>
+                                        <li>Royalty-free comercial</li>
+                                        <li>Download WAV/MP3</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Descrieți muzică (gen, mood, durata)
+                                        <br />
+                                        2. Opțional: specify instrument
+                                        <br />
+                                        3. Generare 30-60 sec (2-3 var)
+                                        <br />
+                                        4. Ascultați și alegeți
+                                        <br />
+                                        5. Download pentru video
+                                    </div>
+                                </div>
+
+                                <!-- AudioShake (Stem Separation) -->
+                                <div class="tool-card" data-type="free,paid">
+                                    <div class="tool-name">
+                                        <h3>AudioShake AI Stems</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: 2 separări/lună |
+                                        <strong>Paid: $10+/lună</strong>
+                                    </div>
+                                    <p class="description">Desparte voce, instrumente, baterie, baixo dintr-o piesă.</p>
+                                    <ul class="features">
+                                        <li>Separare voce/instrumente</li>
+                                        <li>AI-powered, calitate inaltă</li>
+                                        <li>Remaster și remix</li>
+                                        <li>Licență comercială</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Upload piesa/cântec
+                                        <br />
+                                        2. AI desparte în stems
+                                        <br />
+                                        3. Download voce, beat, instrumente separat
+                                        <br />
+                                        4. Recombin în video cu voce proprie
+                                    </div>
+                                </div>
+
+                                <!-- Noise Suppression AI -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>Krisp Noise Suppression</h3>
+                                        <span class="badge free">Gratuit (Basic)</span>
+                                    </div>
+                                    <div class="price">
+                                        Basic:
+                                        <strong>Gratuit</strong>
+                                        | Pro: $120/an
+                                    </div>
+                                    <p class="description">Elimină zgomot de fundal din orice audio real-time.</p>
+                                    <ul class="features">
+                                        <li>Eliminare zgomot în real-time</li>
+                                        <li>Suport toate apps (Zoom, OBS)</li>
+                                        <li>AI voice enhancement</li>
+                                        <li>Batch processing</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Download Krisp
+                                        <br />
+                                        2. Selectați audio input în app
+                                        <br />
+                                        3. Enable noise suppression
+                                        <br />
+                                        4. Audio curat în Zoom/OBS direct
+                                        <br />
+                                        5. Batch: Procesa fișiere existente
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PICTURA ȘI IMAGINI CU AI -->
+                        <div class="category">
+                            <h2>5. 🎨 Pictura și Generare Imagini cu AI</h2>
+
+                            <div class="tools-grid">
+                                <!-- Midjourney -->
+                                <div class="tool-card" data-type="paid">
+                                    <div class="tool-name">
+                                        <h3>Midjourney</h3>
+                                        <span class="badge paid">Paid</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>$10-120/lună</strong>
+                                        (subscription)
+                                    </div>
+                                    <p class="description">Cea mai bună calitate imagini AI, ideal pentru cinematografie.</p>
+                                    <ul class="features">
+                                        <li>Imagini ultra HD și detaliate</li>
+                                        <li>Control stil și cinematografie</li>
+                                        <li>Upscale 4K</li>
+                                        <li>Consistent character (nook)</li>
+                                        <li>Reference images</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Join Discord: midjourney.com
+                                        <br />
+                                        2. /imagine + prompt detaliat
+                                        <br />
+                                        3. Ex: "cinematic shot of..." + "film: color grading"
+                                        <br />
+                                        4. Alegeți varianta preferată
+                                        <br />
+                                        5. Upscale și download
+                                    </div>
+                                </div>
+
+                                <!-- Leonardo.ai -->
+                                <div class="tool-card" data-type="free,paid">
+                                    <div class="tool-name">
+                                        <h3>Leonardo.ai</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: 150 tokens/zi |
+                                        <strong>Pro: $10/lună</strong>
+                                    </div>
+                                    <p class="description">Generator imagini rapid, model propriu pentru consistency.</p>
+                                    <ul class="features">
+                                        <li>Generare rapid HD/4K</li>
+                                        <li>AI Canvas pentru editare</li>
+                                        <li>Custom model training</li>
+                                        <li>Batch generation</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. leonardo.ai → Create
+                                        <br />
+                                        2. Scrieți prompt detaliat
+                                        <br />
+                                        3. Selectați model (Alchemy, SDXL)
+                                        <br />
+                                        4. Batch size pentru variante
+                                        <br />
+                                        5. Canvas: editare și refinement
+                                    </div>
+                                </div>
+
+                                <!-- DALL-E 3 -->
+                                <div class="tool-card" data-type="paid">
+                                    <div class="tool-name">
+                                        <h3>DALL-E 3 (OpenAI)</h3>
+                                        <span class="badge paid">Paid</span>
+                                    </div>
+                                    <div class="price">
+                                        ChatGPT Plus:
+                                        <strong>$20/lună</strong>
+                                        (unlimited)
+                                    </div>
+                                    <p class="description">Cea mai bună text-to-image, prompt understanding avansat.</p>
+                                    <ul class="features">
+                                        <li>Prompt understanding natural</li>
+                                        <li>Detaliu extraordinar</li>
+                                        <li>Consistent style</li>
+                                        <li>Text rendering în imagini</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. ChatGPT Plus → explore → DALL-E 3
+                                        <br />
+                                        2. Descrieți exact ce vreți
+                                        <br />
+                                        3. AI sugereaza improvements
+                                        <br />
+                                        4. Generare HD (1792x1024)
+                                        <br />
+                                        5. Download pentru video
+                                    </div>
+                                </div>
+
+                                <!-- Firefly (Adobe) -->
+                                <div class="tool-card" data-type="paid">
+                                    <div class="tool-name">
+                                        <h3>Adobe Firefly Generative Fill</h3>
+                                        <span class="badge paid">Paid</span>
+                                    </div>
+                                    <div class="price">
+                                        Express:
+                                        <strong>$4.99/lună</strong>
+                                        | Creative Cloud:
+                                        <strong>$55+/lună</strong>
+                                    </div>
+                                    <p class="description">Generează content direct în Photoshop/Premiere cu control perfect.</p>
+                                    <ul class="features">
+                                        <li>Generative fill Photoshop</li>
+                                        <li>Generative expand</li>
+                                        <li>Seamless integration Adobe</li>
+                                        <li>Vector AI painting</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Photoshop → select area
+                                        <br />
+                                        2. Firefly → Generative Fill
+                                        <br />
+                                        3. Scrieți prompt (Optional)
+                                        <br />
+                                        4. AI generează opțiuni
+                                        <br />
+                                        5. Refine și integrate
+                                    </div>
+                                </div>
+
+                                <!-- Runway Custom Models -->
+                                <div class="tool-card" data-type="paid">
+                                    <div class="tool-name">
+                                        <h3>Runway Custom Models</h3>
+                                        <span class="badge paid">Paid</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>$12-76/lună</strong>
+                                        (credit-based)
+                                    </div>
+                                    <p class="description">Antrenează AI model pe propriile imagini pentru consistency.</p>
+                                    <ul class="features">
+                                        <li>Train model pe 10-50 imagini</li>
+                                        <li>Generate în stil personal</li>
+                                        <li>Text-to-image consistent</li>
+                                        <li>Export HD batch</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Runway → Train → Custom Model
+                                        <br />
+                                        2. Upload 10-50 imagini stil
+                                        <br />
+                                        3. Antrenare AI (10-30 min)
+                                        <br />
+                                        4. /imagine cu model personal
+                                        <br />
+                                        5. Generate sute variante consistente
+                                    </div>
+                                </div>
+
+                                <!-- Clipdrop Remove.bg -->
+                                <div class="tool-card" data-type="free,paid">
+                                    <div class="tool-name">
+                                        <h3>Clipdrop (Remove.bg + Expand)</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: 50/lună |
+                                        <strong>Pro: $9.99/lună</strong>
+                                    </div>
+                                    <p class="description">Elimina background AI, expand image magic, cleanup.</p>
+                                    <ul class="features">
+                                        <li>Background removal HD</li>
+                                        <li>Expand image AI (inpaint)</li>
+                                        <li>Object remove</li>
+                                        <li>Batch processing</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. clipdrop.co → selectați tool
+                                        <br />
+                                        2. Upload imagine sau paste
+                                        <br />
+                                        3. AI procesa instant
+                                        <br />
+                                        4. Download transparent PNG
+                                        <br />
+                                        5. Expand: drag edge pentru gen background
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ANIMAȚII ȘI DESENE ANIMATE -->
+                        <div class="category">
+                            <h2>6. 🎬 Animații și Desene Animate</h2>
+
+                            <div class="tools-grid">
+                                <!-- Runway Motion Brush -->
+                                <div class="tool-card" data-type="paid">
+                                    <div class="tool-name">
+                                        <h3>Runway Motion Brush</h3>
+                                        <span class="badge paid">Paid</span>
+                                    </div>
+                                    <div class="price"><strong>$12-76/lună</strong></div>
+                                    <p class="description">Animează orice imagine cu AI motion control.</p>
+                                    <ul class="features">
+                                        <li>Brush motion direction control</li>
+                                        <li>Looped animation</li>
+                                        <li>Professional smoothness</li>
+                                        <li>Export video format</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Importați imagine Runway
+                                        <br />
+                                        2. Motion Brush: draw motion direction
+                                        <br />
+                                        3. Intensity control (gentle-extreme)
+                                        <br />
+                                        4. Preview animație
+                                        <br />
+                                        5. Export MP4/WebM
+                                    </div>
+                                </div>
+
+                                <!-- Anime.js + Spline -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>Spline 3D Animation</h3>
+                                        <span class="badge free">Gratuit (Web-based)</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>Gratuit</strong>
+                                        sau
+                                        <strong>$99/an Pro</strong>
+                                    </div>
+                                    <p class="description">Designer 3D ușor, crează animații 3D interactive.</p>
+                                    <ul class="features">
+                                        <li>3D modeling drag-drop</li>
+                                        <li>Animation timeline</li>
+                                        <li>Physics simulation</li>
+                                        <li>Export video 4K</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. spline.design → New Project
+                                        <br />
+                                        2. Add shapes (cube, sphere, model)
+                                        <br />
+                                        3. Timeline: keyframe animation
+                                        <br />
+                                        4. Physics: gravity, collision
+                                        <br />
+                                        5. Export video pentru video editor
+                                    </div>
+                                </div>
+
+                                <!-- Rigs + Loom Motion Capture -->
+                                <div class="tool-card" data-type="free,paid">
+                                    <div class="tool-name">
+                                        <h3>Character Animator (Animation Rig)</h3>
+                                        <span class="badge paid">Paid</span>
+                                    </div>
+                                    <div class="price">
+                                        Adobe Character Animator:
+                                        <strong>$20/lună</strong>
+                                    </div>
+                                    <p class="description">Animează personaje rig-uri prin motion capture webcam.</p>
+                                    <ul class="features">
+                                        <li>Puppet pin setup</li>
+                                        <li>Webcam motion capture</li>
+                                        <li>Lip sync automat</li>
+                                        <li>AI-assisted pose</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Importați ilustrație în Character Animator
+                                        <br />
+                                        2. Puppet Pin: set points (head, arms)
+                                        <br />
+                                        3. Record: webcam capture mișcările
+                                        <br />
+                                        4. AI: lip sync din audio
+                                        <br />
+                                        5. Export video direct Premiere Pro
+                                    </div>
+                                </div>
+
+                                <!-- Manim (Animation Math) -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>Manim (Open Source Animation)</h3>
+                                        <span class="badge free">Gratuit</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>100% Gratuit</strong>
+                                        (GitHub open source)
+                                    </div>
+                                    <p class="description">Crează animații matematice și explicații vizuale cu Python.</p>
+                                    <ul class="features">
+                                        <li>Python-based animation</li>
+                                        <li>Formule matematice animate</li>
+                                        <li>Diagrame și grafice</li>
+                                        <li>Professional output 4K</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. pip install manim
+                                        <br />
+                                        2. Scrieți scenă în Python
+                                        <br />
+                                        3. manim render scene.py
+                                        <br />
+                                        4. Exportă MP4 4K automat
+                                        <br />
+                                        5. Perfect pentru science videos
+                                    </div>
+                                </div>
+
+                                <!-- Blender (3D) -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>Blender Eevee + Cycles</h3>
+                                        <span class="badge free">Gratuit (Open Source)</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>100% Gratuit</strong>
+                                        (blender.org)
+                                    </div>
+                                    <p class="description">Professional 3D modeling, rendering, VFX, animation.</p>
+                                    <ul class="features">
+                                        <li>3D modeling & sculpture</li>
+                                        <li>Professional rendering</li>
+                                        <li>Motion graphics</li>
+                                        <li>VFX compositing</li>
+                                        <li>Scripting Python</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. blender.org download
+                                        <br />
+                                        2. Model → Material → Light
+                                        <br />
+                                        3. Timeline: keyframe animation
+                                        <br />
+                                        4. Eevee: real-time render
+                                        <br />
+                                        5. Render Farm: output 4K EXR
+                                    </div>
+                                </div>
+
+                                <!-- Pencil2D (2D Animation) -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>Pencil2D Hand-Drawn Animation</h3>
+                                        <span class="badge free">Gratuit (Open Source)</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>100% Gratuit</strong>
+                                        (Windows/Mac/Linux)
+                                    </div>
+                                    <p class="description">Crează animații 2D tradiționale cu presupunere de mișcare ușoară.</p>
+                                    <ul class="features">
+                                        <li>Frame-by-frame drawing</li>
+                                        <li>Onion skin help</li>
+                                        <li>Timeline editing</li>
+                                        <li>Vector și raster mixed</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. pencil2d.org download
+                                        <br />
+                                        2. New Layer → New Frame
+                                        <br />
+                                        3. Draw cu Pencil/Brush
+                                        <br />
+                                        4. Onion skin: vizi frame anterior
+                                        <br />
+                                        5. Export video MP4
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PROMOVARE ȘI DISTRIBUȚIE -->
+                        <div class="category">
+                            <h2>7. 📢 Promovare și Distribuție (Multiplatform)</h2>
+
+                            <div class="tools-grid">
+                                <!-- Buffer / Later -->
+                                <div class="tool-card" data-type="paid,freemium">
+                                    <div class="tool-name">
+                                        <h3>Buffer Social Media Manager</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: 3 platform |
+                                        <strong>Paid: $5-100/lună</strong>
+                                    </div>
+                                    <p class="description">Program și distribuiți video pe TikTok, YouTube, Instagram, Facebook.</p>
+                                    <ul class="features">
+                                        <li>Schedule posts pe 10+ platforme</li>
+                                        <li>AI caption generator</li>
+                                        <li>Best time to post automat</li>
+                                        <li>Analytics per platform</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. buffer.com → Connect accounts
+                                        <br />
+                                        2. Upload video
+                                        <br />
+                                        3. AI genereaza descriere + hashtags
+                                        <br />
+                                        4. Schedule pentru mai târziu
+                                        <br />
+                                        5. Analytics: track engagement
+                                    </div>
+                                </div>
+
+                                <!-- Repurpose.io -->
+                                <div class="tool-card" data-type="paid">
+                                    <div class="tool-name">
+                                        <h3>Repurpose.io (Video Repurpose)</h3>
+                                        <span class="badge paid">Paid</span>
+                                    </div>
+                                    <div class="price"><strong>$35-199/lună</strong></div>
+                                    <p class="description">Transforma 1 video în 10 variante optimizate pentru fiecare platform.</p>
+                                    <ul class="features">
+                                        <li>Automatic video repurposing</li>
+                                        <li>Optimizare per platform</li>
+                                        <li>Captions auto</li>
+                                        <li>Scheduling integrate</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Upload video lungă
+                                        <br />
+                                        2. Selectați platforme țintă
+                                        <br />
+                                        3. AI crează variante crop/format
+                                        <br />
+                                        4. Auto-captions și effects
+                                        <br />
+                                        5. Schedule pe toate platformele
+                                    </div>
+                                </div>
+
+                                <!-- YouTube Studio (Native) -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>YouTube Studio (Native Tools)</h3>
+                                        <span class="badge free">Gratuit</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>100% Gratuit</strong>
+                                        cu YouTube account
+                                    </div>
+                                    <p class="description">Publicare, scheduling, AI auto-captions, monetizare.</p>
+                                    <ul class="features">
+                                        <li>Auto-generate captions</li>
+                                        <li>Chapters automat AI</li>
+                                        <li>Scheduling advance</li>
+                                        <li>Analytics real-time</li>
+                                        <li>Monetizare YouTube Partner</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. youtube.com/studio
+                                        <br />
+                                        2. Create → Upload video
+                                        <br />
+                                        3. Scrieți title + description
+                                        <br />
+                                        4. Auto-captions: enable
+                                        <br />
+                                        5. Schedule și publish
+                                    </div>
+                                </div>
+
+                                <!-- HubSpot Social Media -->
+                                <div class="tool-card" data-type="free,paid">
+                                    <div class="tool-name">
+                                        <h3>HubSpot Social Media Toolkit</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Plan gratuit: basic |
+                                        <strong>Marketing Hub: $45+/lună</strong>
+                                    </div>
+                                    <p class="description">Marketing automation cu social media scheduling și AI messaging.</p>
+                                    <ul class="features">
+                                        <li>Schedule pe social</li>
+                                        <li>AI content suggestion</li>
+                                        <li>Lead tracking</li>
+                                        <li>CRM integration</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. HubSpot → Social Media
+                                        <br />
+                                        2. Connect social accounts
+                                        <br />
+                                        3. Compose post cu AI suggest
+                                        <br />
+                                        4. Schedule per platform
+                                        <br />
+                                        5. Track clicks și conversions
+                                    </div>
+                                </div>
+
+                                <!-- TubeBuddy / VidIQ (YouTube Optimization) -->
+                                <div class="tool-card" data-type="paid,freemium">
+                                    <div class="tool-name">
+                                        <h3>TubeBuddy (YouTube SEO)</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">
+                                        Basic:
+                                        <strong>Gratuit</strong>
+                                        | Pro:
+                                        <strong>$9.99/lună</strong>
+                                    </div>
+                                    <p class="description">SEO optimization YouTube, keyword research, thumbnail testing.</p>
+                                    <ul class="features">
+                                        <li>Keyword research cu volume</li>
+                                        <li>Title suggestions A/B test</li>
+                                        <li>Thumbnail split-test</li>
+                                        <li>Analytics competitori</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. tubebuddy.com extension
+                                        <br />
+                                        2. Research keywords in creator studio
+                                        <br />
+                                        3. Titlu suggestions
+                                        <br />
+                                        4. Thumbnail test: A/B variants
+                                        <br />
+                                        5. Track CTR și performance
+                                    </div>
+                                </div>
+
+                                <!-- Notion CMS (Content Calendar) -->
+                                <div class="tool-card" data-type="free,paid">
+                                    <div class="tool-name">
+                                        <h3>Notion Content Calendar (DIY)</h3>
+                                        <span class="badge free">Gratuit (Notion Free)</span>
+                                    </div>
+                                    <div class="price">
+                                        <strong>Gratuit</strong>
+                                        sau
+                                        <strong>$12/lună Pro</strong>
+                                    </div>
+                                    <p class="description">Database Notion pentru planning obsesiv cu automation Zapier.</p>
+                                    <ul class="features">
+                                        <li>Content planning database</li>
+                                        <li>Status tracking (Draft-Published)</li>
+                                        <li>Zapier automation</li>
+                                        <li>Team collaboration</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Notion → Database template
+                                        <br />
+                                        2. Coloane: Title, Platform, Status, Link
+                                        <br />
+                                        3. Zapier: publish automatically
+                                        <br />
+                                        4. Tags per series
+                                        <br />
+                                        5. Filter & sort per platform
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MONETIZARE -->
+                        <div class="category">
+                            <h2>8. 💰 Monetizare și Venituri</h2>
+
+                            <div class="tools-grid">
+                                <!-- YouTube Partner Program -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>YouTube Partner Program</h3>
+                                        <span class="badge free">Native</span>
+                                    </div>
+                                    <div class="price">Cerințe: 1k subs + 4k watch-hours pe 90 zile</div>
+                                    <p class="description">Monetizare video cu ads: CPM $2-$10/1000 views.</p>
+                                    <ul class="features">
+                                        <li>Ad revenue (AdSense)</li>
+                                        <li>Channel memberships</li>
+                                        <li>Super Chat/Thanks</li>
+                                        <li>YouTube Shorts Fund (deprecated)</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. YouTube Studio → Monetizare
+                                        <br />
+                                        2. Accept terms of service
+                                        <br />
+                                        3. Link AdSense account
+                                        <br />
+                                        4. Enable ads (skippable/non-skippable)
+                                        <br />
+                                        5. Track revenue: Analytics → Income
+                                    </div>
+                                </div>
+
+                                <!-- TikTok Creator Fund -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>TikTok Creator Fund</h3>
+                                        <span class="badge free">Native</span>
+                                    </div>
+                                    <div class="price">Cerințe: 10k followers + 100k views/30 zile | CPM: $0.02-$0.04</div>
+                                    <p class="description">Venituri TikTok: ads share + gifts (diamante).</p>
+                                    <ul class="features">
+                                        <li>Creator Fund revenue</li>
+                                        <li>Gifts (viewers donate)</li>
+                                        <li>Brand partnerships</li>
+                                        <li>TikTok Shop commission</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. TikTok → Profil → Creator Center
+                                        <br />
+                                        2. Apply Creator Fund
+                                        <br />
+                                        3. Await approval (1-2 săptămâni)
+                                        <br />
+                                        4. Balancing: check earnings
+                                        <br />
+                                        5. Cash out prin bank transfer
+                                    </div>
+                                </div>
+
+                                <!-- Patreon (Direct Funding) -->
+                                <div class="tool-card" data-type="free,paid">
+                                    <div class="tool-name">
+                                        <h3>Patreon (Community Support)</h3>
+                                        <span class="badge freemium">Freemium</span>
+                                    </div>
+                                    <div class="price">Gratuit + 5% commission | Patreon takes 5-8%</div>
+                                    <p class="description">Direct funding de la fans, tier-uri exclusive content.</p>
+                                    <ul class="features">
+                                        <li>Tiers cu price personalizat</li>
+                                        <li>Exclusive content</li>
+                                        <li>Community chat</li>
+                                        <li>Detailed analytics</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. patreon.com creator signup
+                                        <br />
+                                        2. Create tiers (entry, vip, exclusive)
+                                        <br />
+                                        3. Post exclusive content
+                                        <br />
+                                        4. Link YouTube video (call-to-action)
+                                        <br />
+                                        5. Monthly payouts per Stripe
+                                    </div>
+                                </div>
+
+                                <!-- Gumroad (Digital Products) -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>Gumroad (Digital Products)</h3>
+                                        <span class="badge free">Freemium (5% commission)</span>
+                                    </div>
+                                    <div class="price">Gratuit + 5% fee pe vânzări</div>
+                                    <p class="description">Vinde ebooks, templates, scripts, exclusive video, samples.</p>
+                                    <ul class="features">
+                                        <li>Digital product store</li>
+                                        <li>License key system</li>
+                                        <li>License tiers (perpetual/monthly)</li>
+                                        <li>Email subscribers list</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. gumroad.com → Products → New
+                                        <br />
+                                        2. Upload file (video, PDF, zip)
+                                        <br />
+                                        3. Set price și description
+                                        <br />
+                                        4. Share link pe YouTube/social
+                                        <br />
+                                        5. Payments direct Stripe/PayPal
+                                    </div>
+                                </div>
+
+                                <!-- Sponsorships & Affiliate -->
+                                <div class="tool-card" data-type="free">
+                                    <div class="tool-name">
+                                        <h3>Influencer Networks (AspireIQ, Impact)</h3>
+                                        <span class="badge free">Networked</span>
+                                    </div>
+                                    <div class="price">Brand deals: $500-$10k per campaign | Commission 10-30%</div>
+                                    <p class="description">Conectează creator cu branzi pentru sponsored content.</p>
+                                    <ul class="features">
+                                        <li>Brand deal matching</li>
+                                        <li>Affiliate commission</li>
+                                        <li>Contract management</li>
+                                        <li>Performance tracking</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Créeaza profil pe AspireIQ/Impact
+                                        <br />
+                                        2. Add portfolio și metrics
+                                        <br />
+                                        3. Browse opțiuni brand
+                                        <br />
+                                        4. Pitch: send proposal cu media kit
+                                        <br />
+                                        5. Negociere rate și deliverables
+                                    </div>
+                                </div>
+
+                                <!-- Teachable / Udemy (Courses) -->
+                                <div class="tool-card" data-type="paid">
+                                    <div class="tool-name">
+                                        <h3>Teachable / Udemy Courses</h3>
+                                        <span class="badge paid">Paid</span>
+                                    </div>
+                                    <div class="price">Teachable: $39/lună | Udemy: 0-50% royalty pe vânzări</div>
+                                    <p class="description">Vinde curse video la sute de mii de studeni.</p>
+                                    <ul class="features">
+                                        <li>Video course builder</li>
+                                        <li>Quiz și assignments</li>
+                                        <li>Student community</li>
+                                        <li>Marketing built-in (Udemy)</li>
+                                    </ul>
+                                    <div class="tutorial">
+                                        <strong>Tutorial:</strong>
+                                        <br />
+                                        1. Teachable.com create course
+                                        <br />
+                                        2. Modulele: upload video lessons
+                                        <br />
+                                        3. Pricing: set price (USD/local)
+                                        <br />
+                                        4. Email sequences: nurture leads
+                                        <br />
+                                        5. Affiliate: studenți refer = commission
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
 
-        <div class="nav-section-label">Navigare</div>
-        <a href="index.html#av" class="nav-link"><span class="nav-icon">↩</span> Înapoi la workshop</a>
-        <a href="#category-1" class="nav-link active"><span class="nav-icon">🎥</span> Creare conținut</a>
-        <a href="#category-2" class="nav-link"><span class="nav-icon">✂️</span> Redactare video</a>
-        <a href="#category-3" class="nav-link"><span class="nav-icon">📝</span> Subtitrare</a>
-        <a href="#category-4" class="nav-link"><span class="nav-icon">🎵</span> Sonorizare</a>
-        <a href="#category-5" class="nav-link"><span class="nav-icon">🎨</span> Generare imagini</a>
-        <a href="#category-6" class="nav-link"><span class="nav-icon">🎬</span> Animatii</a>
-        <a href="#category-7" class="nav-link"><span class="nav-icon">📢</span> Promovare</a>
-        <a href="#category-8" class="nav-link"><span class="nav-icon">💰</span> Monetizare</a>
-
-        <div class="nav-footer">
-          <div>Filtrare rapida: toate, gratuite, cu plata</div>
-          <div style="margin-top: 6px">Actualizat mai 2026</div>
-        </div>
-      </nav>
-
-      <main id="main">
-        <div class="hero">
-          <div class="hero-eyebrow">Subpagină workshop</div>
-          <h1 class="hero-title">Conținut Audiovizual <span>100% cu AI</span></h1>
-          <p class="hero-desc">Catalog complet de instrumente, filtre rapide și mini-tutoriale pentru workflow end-to-end: creare, editare, subtitrare, distribuție și monetizare.</p>
-          <div class="hero-meta">
-            <span class="hero-badge green">Ghid extins din secțiunea AV</span>
-            <span class="hero-badge blue">8 categorii</span>
-            <span class="hero-badge">Gratuit / Freemium / Plătit</span>
-          </div>
-        </div>
-
-        <div class="content">
-          <div class="container">
-            <div class="header">
-              <h1>🎬 Ghid Complet: Producție Audiovizuală 100% cu AI</h1>
-              <p>Instrumente gratuite și cu plată, cu tutoriale detaliate pentru fiecare etapă</p>
-            </div>
-
-            <div class="filters">
-              <button class="filter-btn active" data-filter="all">Toate instrumentele</button>
-              <button class="filter-btn" data-filter="free">📱 Doar gratuite</button>
-              <button class="filter-btn" data-filter="paid">💳 Cu plată</button>
-            </div>
-
-            <!-- CREAREA CONȚINUTULUI -->
-            <div class="category">
-              <h2>1. 🎥 Crearea Conținutului Audiovizual</h2>
-
-              <div class="tools-grid">
-                <!-- Synthesia -->
-                <div class="tool-card" data-type="paid,freemium">
-                  <div class="tool-name">
-                    <h3>Synthesia</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: 1 video/lună | <strong>Paid: $30-90/lună</strong></div>
-                  <p class="description">Generator de video cu AI cu prezentatori virtuali realisti, suporta 150+ limbi.</p>
-                  <ul class="features">
-                    <li>Prezentatori avatari fotorealistici</li>
-                    <li>Text-to-video în orice limbă</li>
-                    <li>Branduire personalizată</li>
-                    <li>Export HD/4K</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Înregistrați text sau script → AI generează video<br />
-                    2. Alegeți avatar și limbă<br />
-                    3. Personalizați background și text pe ecran<br />
-                    4. Export și distribuire
-                  </div>
-                </div>
-
-                <!-- D-ID -->
-                <div class="tool-card" data-type="paid,freemium">
-                  <div class="tool-name">
-                    <h3>D-ID</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: 5 min/lună | <strong>Paid: $25-100/lună</strong></div>
-                  <p class="description">Animează orice imagine cu mișcări realiste pe bază de AI.</p>
-                  <ul class="features">
-                    <li>Animează imagini statice</li>
-                    <li>Sincronizare labiale (lip-sync)</li>
-                    <li>Suportă orice limbă</li>
-                    <li>Exportare HD</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Încărcați imagine (portret, celebrity foto)<br />
-                    2. Adăugați audio (text-to-speech sau propriul audio)<br />
-                    3. AI sincronizează expresia și buzele<br />
-                    4. Download video
-                  </div>
-                </div>
-
-                <!-- Runway Gen-3 -->
-                <div class="tool-card" data-type="paid,freemium">
-                  <div class="tool-name">
-                    <h3>Runway Gen-3</h3>
-                    <span class="badge paid">Paid</span>
-                  </div>
-                  <div class="price"><strong>$12-76/lună</strong> (credit-based)</div>
-                  <p class="description">Generator video puternic din text, imagini sau video scurt.</p>
-                  <ul class="features">
-                    <li>Text-to-video profesional</li>
-                    <li>Image-to-video animație</li>
-                    <li>Video extend și magic edit</li>
-                    <li>Control cinematografic avansat</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Scrieți prompt detaliat (scenă, stil, acțiune)<br />
-                    2. Setați durata și aspect ratio<br />
-                    3. Alegeți model (Gen-3, Gen-2)<br />
-                    4. Așteptați generare (1-3 min)<br />
-                    5. Editare cu magic tools
-                  </div>
-                </div>
-
-                <!-- HeyGen -->
-                <div class="tool-card" data-type="paid,freemium">
-                  <div class="tool-name">
-                    <h3>HeyGen</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: 3 videoURL | <strong>Paid: $25-99/lună</strong></div>
-                  <p class="description">Video personalizate cu AI avatari, ideal pentru marketing și e-learning.</p>
-                  <ul class="features">
-                    <li>200+ AI avatari realiști</li>
-                    <li>Batch processing pentru campanii</li>
-                    <li>Custom avatar upload</li>
-                    <li>Suport 70+ limbi</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Selectați avatar și limbă<br />
-                    2. Scrieți script (suporta variabile {{name}})<br />
-                    3. Importați CSV pentru personalizare în masă<br />
-                    4. Generare automată pentru 1000+ variante
-                  </div>
-                </div>
-
-                <!-- Pika Labs -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>Pika Labs</h3>
-                    <span class="badge free">Gratuit (Beta)</span>
-                  </div>
-                  <div class="price">Credit limitat zilnic, <strong>Paid: ~$10/lună</strong> viitor</div>
-                  <p class="description">Generator video rapid din text, cu stil și control bun.</p>
-                  <ul class="features">
-                    <li>Text-to-video rapid (30 sec)</li>
-                    <li>Diverse style presets</li>
-                    <li>Discord bot integration</li>
-                    <li>Community support</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Accesați Pika via Discord bot<br />
-                    2. Tastați /create + prompt<br />
-                    3. Alegeți aspect ratio și stil<br />
-                    4. Video gata în 30-60 secunde
-                  </div>
-                </div>
-
-                <!-- Suno AI (Audio) -->
-                <div class="tool-card" data-type="free,paid">
-                  <div class="tool-name">
-                    <h3>Suno AI</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: 50 credit/lună | <strong>Paid: $10/lună</strong></div>
-                  <p class="description">Generator de muzică și cântece cu AI, perfect pentru BGM.</p>
-                  <ul class="features">
-                    <li>Generează melodii complete cu versuri</li>
-                    <li>Orice gen și stil musical</li>
-                    <li>Custom lyrics input</li>
-                    <li>Royalty-free pentru comercial</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Descrieți piesa (gen, mood, temă)<br />
-                    2. Opțional: adăugați versuri personalizate<br />
-                    3. Alegeți stilul vocal<br />
-                    4. Așteptați generare (1-2 min)<br />
-                    5. Download și utilizare comercială
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- REDACTARE ȘI EDITARE -->
-            <div class="category">
-              <h2>2. ✂️ Redactare și Editare de Video</h2>
-
-              <div class="tools-grid">
-                <!-- CapCut -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>CapCut</h3>
-                    <span class="badge free">Gratuit</span>
-                  </div>
-                  <div class="price">Versiune Web/App: <strong>100% Gratuit</strong></div>
-                  <p class="description">Editor de video profesional gratuit cu AI effects, tăieturi automate.</p>
-                  <ul class="features">
-                    <li>Tăieturi automate pe bază de AI</li>
-                    <li>Efecte și filtre unlimited</li>
-                    <li>Text-to-speech și traduție automată</li>
-                    <li>Background removal cu AI</li>
-                    <li>Watermark opțional</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Importați video brut<br />
-                    2. Folosiți "Auto Captions" → selectați limbă<br />
-                    3. Aplicați tăieturi de liniște cu AI<br />
-                    4. Adăugați muzică și efecte<br />
-                    5. Export HD fără watermark
-                  </div>
-                </div>
-
-                <!-- Adobe Firefly (Premiere Pro) -->
-                <div class="tool-card" data-type="paid">
-                  <div class="tool-name">
-                    <h3>Adobe Firefly + Premiere Pro</h3>
-                    <span class="badge paid">Paid</span>
-                  </div>
-                  <div class="price"><strong>$55/lună</strong> (Creative Cloud Single App)</div>
-                  <p class="description">Suite profesională cu AI Generative Fill, Remove Tool.</p>
-                  <ul class="features">
-                    <li>Generative Fill pentru background</li>
-                    <li>Remove Tool cu AI</li>
-                    <li>Auto color grading</li>
-                    <li>Speech-to-text și sync</li>
-                    <li>4K/8K support</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Importați footage în Premiere Pro<br />
-                    2. Selectați zona problematică<br />
-                    3. Firefly → Remove/Fill automat<br />
-                    4. Color correction automated<br />
-                    5. Export cu codec optimal
-                  </div>
-                </div>
-
-                <!-- Descript -->
-                <div class="tool-card" data-type="paid,freemium">
-                  <div class="tool-name">
-                    <h3>Descript</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: video < 1 GB | <strong>Paid: $24/lună</strong></div>
-                  <p class="description">Editor video text-based, editezi transcript și video se updatează automat.</p>
-                  <ul class="features">
-                    <li>Transcriere automată (150+ limbi)</li>
-                    <li>Editare ca text document</li>
-                    <li>Overdub (regenerare voce)</li>
-                    <li>Screen recording built-in</li>
-                    <li>Podcast editing</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Upload video/podcast<br />
-                    2. Transcriere automată în 1-2 min<br />
-                    3. Editați transcript (ștergeți linii = video se taie)<br />
-                    4. Overdub pentru corecții vocale<br />
-                    5. Export video sincronizat
-                  </div>
-                </div>
-
-                <!-- DaVinci Resolve -->
-                <div class="tool-card" data-type="free,paid">
-                  <div class="tool-name">
-                    <h3>DaVinci Resolve Studio</h3>
-                    <span class="badge free">Gratuit (Community)</span>
-                  </div>
-                  <div class="price">Community: <strong>Gratuit</strong> | Studio: <strong>€295 one-time</strong></div>
-                  <p class="description">Profesional color grading și editing, folosit de studiourile Hollywood.</p>
-                  <ul class="features">
-                    <li>Professional timeline editing</li>
-                    <li>Industry-standard color grading</li>
-                    <li>Fusion VFX built-in</li>
-                    <li>Fairlight audio suite</li>
-                    <li>AI noise removal (Studio)</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. New Project → setați resolution<br />
-                    2. Media Pool: importați footage<br />
-                    3. Edit page: build timeline<br />
-                    4. Color page: grade și color correct<br />
-                    5. Deliver: export cu codec optimal
-                  </div>
-                </div>
-
-                <!-- Opus Clip / Recut -->
-                <div class="tool-card" data-type="paid,freemium">
-                  <div class="tool-name">
-                    <h3>Opus Clip / Recut AI</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: 5/lună | <strong>Paid: $30/lună</strong></div>
-                  <p class="description">Transforma video lungă în clipuri virale scurte, optimizate per platform.</p>
-                  <ul class="features">
-                    <li>Auto-detectare momente cheie</li>
-                    <li>Optimizare TikTok/YouTube Shorts</li>
-                    <li>Captions și B-roll automat</li>
-                    <li>Hook detection</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Upload video lungă (podcast, interview)<br />
-                    2. AI detectează momente virale<br />
-                    3. Alegeri optime per platform<br />
-                    4. Captions + efecte automat<br />
-                    5. Batch export pentru toate platformele
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- SUBTITRARE ȘI TRADUCȚIE -->
-            <div class="category">
-              <h2>3. 📝 Subtitrare și Traducție Automată</h2>
-
-              <div class="tools-grid">
-                <!-- Descript (already above, but subtitle feature) -->
-                <div class="tool-card" data-type="paid,freemium">
-                  <div class="tool-name">
-                    <h3>Rev.com</h3>
-                    <span class="badge paid">Paid</span>
-                  </div>
-                  <div class="price"><strong>$1.25/min</strong> transcriere humană | <strong>$0.25/min</strong> AI</div>
-                  <p class="description">Transcriere și subtitrare de inaltă calitate în 100+ limbi.</p>
-                  <ul class="features">
-                    <li>Subtitrare automată AI</li>
-                    <li>Transcriere umană de inaltă calitate</li>
-                    <li>Export SRT/VTT</li>
-                    <li>Traducere în orice limbă</li>
-                    <li>Speaker identification</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Upload video/audio<br />
-                    2. Selectați limbă și tip (AI/Uman)<br />
-                    3. Așteptați transcriere (minutes-ore)<br />
-                    4. Download SRT file<br />
-                    5. Sincronizare în CapCut/Premiere
-                  </div>
-                </div>
-
-                <!-- ElevenLabs (dubbing) -->
-                <div class="tool-card" data-type="paid">
-                  <div class="tool-name">
-                    <h3>ElevenLabs Dubbing</h3>
-                    <span class="badge paid">Paid</span>
-                  </div>
-                  <div class="price"><strong>Plan Creator: $11/lună</strong> (dubbing inclus)</div>
-                  <p class="description">Dubez video în alte limbi cu aceeași voce și sincronizare perfectă.</p>
-                  <ul class="features">
-                    <li>AI dubbing în 25+ limbi</li>
-                    <li>Păstrează voce originală stil</li>
-                    <li>Sincronizare labială (lip-sync)</li>
-                    <li>Export direct video</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Upload video pe ElevenLabs<br />
-                    2. Selectați limbă țintă<br />
-                    3. AI generează dubbing sincronizat<br />
-                    4. Personalizare voce (pitch, viteză)<br />
-                    5. Download video dubez
-                  </div>
-                </div>
-
-                <!-- CapCut Auto Captions -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>CapCut Auto Captions</h3>
-                    <span class="badge free">Gratuit</span>
-                  </div>
-                  <div class="price"><strong>100% Gratuit</strong> în CapCut</div>
-                  <p class="description">Subtitrare automată rapid în CapCut, 100+ limbi.</p>
-                  <ul class="features">
-                    <li>Subtitrare instant în 100+ limbi</li>
-                    <li>Sincronizare automată perfectă</li>
-                    <li>Stil text personalizabil</li>
-                    <li>Exportare SRT</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. CapCut → Video layer → Text → Auto Caption<br />
-                    2. Selectați limba video-ului<br />
-                    3. IA generează captions sincronizate<br />
-                    4. Editați text dacă necesare<br />
-                    5. Personalizați font și culoare
-                  </div>
-                </div>
-
-                <!-- Whisper (OpenAI) -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>OpenAI Whisper (API Gratuit)</h3>
-                    <span class="badge free">Gratuit (Open Source)</span>
-                  </div>
-                  <div class="price"><strong>Gratuit</strong> + server costs minimal</div>
-                  <p class="description">Model open-source de transcriere, instalează local sau via API.</p>
-                  <ul class="features">
-                    <li>99 limbi suportate</li>
-                    <li>Transcriere offline (local)</li>
-                    <li>Timestamp automat</li>
-                    <li>No subscription needed</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. pip install openai-whisper<br />
-                    2. whisper "video.mp3" --language ro<br />
-                    3. Output automat SRT/VTT<br />
-                    4. Import în editor video
-                  </div>
-                </div>
-
-                <!-- Subtitle Edit (Local) -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>Subtitle Edit</h3>
-                    <span class="badge free">Gratuit (Open Source)</span>
-                  </div>
-                  <div class="price"><strong>Gratuit</strong> (Windows/Mac/Linux)</div>
-                  <p class="description">Editor subtitrari complet, suportă toate formate.</p>
-                  <ul class="features">
-                    <li>Edita SRT, VTT, ASS, etc</li>
-                    <li>Sincronizare manual/automat</li>
-                    <li>Transcriere built-in (Whisper)</li>
-                    <li>Spellcheck și traducere</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. File → New → selectați limbă<br />
-                    2. Video → importați file<br />
-                    3. Auto-transcriere via Whisper<br />
-                    4. Manual sync cu timeline<br />
-                    5. Export SRT/VTT final
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- SONORIZARE ȘI AUDIO -->
-            <div class="category">
-              <h2>4. 🎵 Sonorizare și Audio Design</h2>
-
-              <div class="tools-grid">
-                <!-- ElevenLabs TTS -->
-                <div class="tool-card" data-type="paid,freemium">
-                  <div class="tool-name">
-                    <h3>ElevenLabs Text-to-Speech</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: 10k caractere/lună | <strong>Creator: $11/lună</strong></div>
-                  <p class="description">Voce AI cea mai realistă, 100+ voci în 30+ limbi.</p>
-                  <ul class="features">
-                    <li>Voci naturale și expresive</li>
-                    <li>Voice cloning (copie propria voce)</li>
-                    <li>Emotion & style control</li>
-                    <li>API integration</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Scrieți text în ElevenLabs<br />
-                    2. Selectați voce și limbă<br />
-                    3. Ajustați prosody (pitch, speed)<br />
-                    4. Ascultați preview<br />
-                    5. Download MP3/WAV
-                  </div>
-                </div>
-
-                <!-- Google NotebookLM -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>Google NotebookLM Podcast</h3>
-                    <span class="badge free">Gratuit</span>
-                  </div>
-                  <div class="price"><strong>100% Gratuit</strong></div>
-                  <p class="description">Transforma text/document în podcast audio cu voci naturale.</p>
-                  <ul class="features">
-                    <li>Podcast generation din text</li>
-                    <li>Conversație naturală AI</li>
-                    <li>Background music automat</li>
-                    <li>Multiple voices</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. NotebookLM.google.com<br />
-                    2. Paste text/upload document<br />
-                    3. Click "Audio Overview"<br />
-                    4. AI generează podcast 5-10 min<br />
-                    5. Download MP3 direct
-                  </div>
-                </div>
-
-                <!-- Suno AI (Music) -->
-                <div class="tool-card" data-type="free,paid">
-                  <div class="tool-name">
-                    <h3>Suno AI (Background Music)</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: 50 credit/lună | <strong>$10/lună</strong></div>
-                  <p class="description">Generează muzică de fundal în orice stil și tempo.</p>
-                  <ul class="features">
-                    <li>Generare muzică infinită</li>
-                    <li>Orice gen și tempo</li>
-                    <li>Royalty-free comercial</li>
-                    <li>Download WAV/MP3</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Descrieți muzică (gen, mood, durata)<br />
-                    2. Opțional: specify instrument<br />
-                    3. Generare 30-60 sec (2-3 var)<br />
-                    4. Ascultați și alegeți<br />
-                    5. Download pentru video
-                  </div>
-                </div>
-
-                <!-- AudioShake (Stem Separation) -->
-                <div class="tool-card" data-type="free,paid">
-                  <div class="tool-name">
-                    <h3>AudioShake AI Stems</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: 2 separări/lună | <strong>Paid: $10+/lună</strong></div>
-                  <p class="description">Desparte voce, instrumente, baterie, baixo dintr-o piesă.</p>
-                  <ul class="features">
-                    <li>Separare voce/instrumente</li>
-                    <li>AI-powered, calitate inaltă</li>
-                    <li>Remaster și remix</li>
-                    <li>Licență comercială</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Upload piesa/cântec<br />
-                    2. AI desparte în stems<br />
-                    3. Download voce, beat, instrumente separat<br />
-                    4. Recombin în video cu voce proprie
-                  </div>
-                </div>
-
-                <!-- Noise Suppression AI -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>Krisp Noise Suppression</h3>
-                    <span class="badge free">Gratuit (Basic)</span>
-                  </div>
-                  <div class="price">Basic: <strong>Gratuit</strong> | Pro: $120/an</div>
-                  <p class="description">Elimină zgomot de fundal din orice audio real-time.</p>
-                  <ul class="features">
-                    <li>Eliminare zgomot în real-time</li>
-                    <li>Suport toate apps (Zoom, OBS)</li>
-                    <li>AI voice enhancement</li>
-                    <li>Batch processing</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Download Krisp<br />
-                    2. Selectați audio input în app<br />
-                    3. Enable noise suppression<br />
-                    4. Audio curat în Zoom/OBS direct<br />
-                    5. Batch: Procesa fișiere existente
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- PICTURA ȘI IMAGINI CU AI -->
-            <div class="category">
-              <h2>5. 🎨 Pictura și Generare Imagini cu AI</h2>
-
-              <div class="tools-grid">
-                <!-- Midjourney -->
-                <div class="tool-card" data-type="paid">
-                  <div class="tool-name">
-                    <h3>Midjourney</h3>
-                    <span class="badge paid">Paid</span>
-                  </div>
-                  <div class="price"><strong>$10-120/lună</strong> (subscription)</div>
-                  <p class="description">Cea mai bună calitate imagini AI, ideal pentru cinematografie.</p>
-                  <ul class="features">
-                    <li>Imagini ultra HD și detaliate</li>
-                    <li>Control stil și cinematografie</li>
-                    <li>Upscale 4K</li>
-                    <li>Consistent character (nook)</li>
-                    <li>Reference images</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Join Discord: midjourney.com<br />
-                    2. /imagine + prompt detaliat<br />
-                    3. Ex: "cinematic shot of..." + "film: color grading"<br />
-                    4. Alegeți varianta preferată<br />
-                    5. Upscale și download
-                  </div>
-                </div>
-
-                <!-- Leonardo.ai -->
-                <div class="tool-card" data-type="free,paid">
-                  <div class="tool-name">
-                    <h3>Leonardo.ai</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: 150 tokens/zi | <strong>Pro: $10/lună</strong></div>
-                  <p class="description">Generator imagini rapid, model propriu pentru consistency.</p>
-                  <ul class="features">
-                    <li>Generare rapid HD/4K</li>
-                    <li>AI Canvas pentru editare</li>
-                    <li>Custom model training</li>
-                    <li>Batch generation</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. leonardo.ai → Create<br />
-                    2. Scrieți prompt detaliat<br />
-                    3. Selectați model (Alchemy, SDXL)<br />
-                    4. Batch size pentru variante<br />
-                    5. Canvas: editare și refinement
-                  </div>
-                </div>
-
-                <!-- DALL-E 3 -->
-                <div class="tool-card" data-type="paid">
-                  <div class="tool-name">
-                    <h3>DALL-E 3 (OpenAI)</h3>
-                    <span class="badge paid">Paid</span>
-                  </div>
-                  <div class="price">ChatGPT Plus: <strong>$20/lună</strong> (unlimited)</div>
-                  <p class="description">Cea mai bună text-to-image, prompt understanding avansat.</p>
-                  <ul class="features">
-                    <li>Prompt understanding natural</li>
-                    <li>Detaliu extraordinar</li>
-                    <li>Consistent style</li>
-                    <li>Text rendering în imagini</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. ChatGPT Plus → explore → DALL-E 3<br />
-                    2. Descrieți exact ce vreți<br />
-                    3. AI sugereaza improvements<br />
-                    4. Generare HD (1792x1024)<br />
-                    5. Download pentru video
-                  </div>
-                </div>
-
-                <!-- Firefly (Adobe) -->
-                <div class="tool-card" data-type="paid">
-                  <div class="tool-name">
-                    <h3>Adobe Firefly Generative Fill</h3>
-                    <span class="badge paid">Paid</span>
-                  </div>
-                  <div class="price">Express: <strong>$4.99/lună</strong> | Creative Cloud: <strong>$55+/lună</strong></div>
-                  <p class="description">Generează content direct în Photoshop/Premiere cu control perfect.</p>
-                  <ul class="features">
-                    <li>Generative fill Photoshop</li>
-                    <li>Generative expand</li>
-                    <li>Seamless integration Adobe</li>
-                    <li>Vector AI painting</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Photoshop → select area<br />
-                    2. Firefly → Generative Fill<br />
-                    3. Scrieți prompt (Optional)<br />
-                    4. AI generează opțiuni<br />
-                    5. Refine și integrate
-                  </div>
-                </div>
-
-                <!-- Runway Custom Models -->
-                <div class="tool-card" data-type="paid">
-                  <div class="tool-name">
-                    <h3>Runway Custom Models</h3>
-                    <span class="badge paid">Paid</span>
-                  </div>
-                  <div class="price"><strong>$12-76/lună</strong> (credit-based)</div>
-                  <p class="description">Antrenează AI model pe propriile imagini pentru consistency.</p>
-                  <ul class="features">
-                    <li>Train model pe 10-50 imagini</li>
-                    <li>Generate în stil personal</li>
-                    <li>Text-to-image consistent</li>
-                    <li>Export HD batch</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Runway → Train → Custom Model<br />
-                    2. Upload 10-50 imagini stil<br />
-                    3. Antrenare AI (10-30 min)<br />
-                    4. /imagine cu model personal<br />
-                    5. Generate sute variante consistente
-                  </div>
-                </div>
-
-                <!-- Clipdrop Remove.bg -->
-                <div class="tool-card" data-type="free,paid">
-                  <div class="tool-name">
-                    <h3>Clipdrop (Remove.bg + Expand)</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: 50/lună | <strong>Pro: $9.99/lună</strong></div>
-                  <p class="description">Elimina background AI, expand image magic, cleanup.</p>
-                  <ul class="features">
-                    <li>Background removal HD</li>
-                    <li>Expand image AI (inpaint)</li>
-                    <li>Object remove</li>
-                    <li>Batch processing</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. clipdrop.co → selectați tool<br />
-                    2. Upload imagine sau paste<br />
-                    3. AI procesa instant<br />
-                    4. Download transparent PNG<br />
-                    5. Expand: drag edge pentru gen background
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- ANIMAȚII ȘI DESENE ANIMATE -->
-            <div class="category">
-              <h2>6. 🎬 Animații și Desene Animate</h2>
-
-              <div class="tools-grid">
-                <!-- Runway Motion Brush -->
-                <div class="tool-card" data-type="paid">
-                  <div class="tool-name">
-                    <h3>Runway Motion Brush</h3>
-                    <span class="badge paid">Paid</span>
-                  </div>
-                  <div class="price"><strong>$12-76/lună</strong></div>
-                  <p class="description">Animează orice imagine cu AI motion control.</p>
-                  <ul class="features">
-                    <li>Brush motion direction control</li>
-                    <li>Looped animation</li>
-                    <li>Professional smoothness</li>
-                    <li>Export video format</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Importați imagine Runway<br />
-                    2. Motion Brush: draw motion direction<br />
-                    3. Intensity control (gentle-extreme)<br />
-                    4. Preview animație<br />
-                    5. Export MP4/WebM
-                  </div>
-                </div>
-
-                <!-- Anime.js + Spline -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>Spline 3D Animation</h3>
-                    <span class="badge free">Gratuit (Web-based)</span>
-                  </div>
-                  <div class="price"><strong>Gratuit</strong> sau <strong>$99/an Pro</strong></div>
-                  <p class="description">Designer 3D ușor, crează animații 3D interactive.</p>
-                  <ul class="features">
-                    <li>3D modeling drag-drop</li>
-                    <li>Animation timeline</li>
-                    <li>Physics simulation</li>
-                    <li>Export video 4K</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. spline.design → New Project<br />
-                    2. Add shapes (cube, sphere, model)<br />
-                    3. Timeline: keyframe animation<br />
-                    4. Physics: gravity, collision<br />
-                    5. Export video pentru video editor
-                  </div>
-                </div>
-
-                <!-- Rigs + Loom Motion Capture -->
-                <div class="tool-card" data-type="free,paid">
-                  <div class="tool-name">
-                    <h3>Character Animator (Animation Rig)</h3>
-                    <span class="badge paid">Paid</span>
-                  </div>
-                  <div class="price">Adobe Character Animator: <strong>$20/lună</strong></div>
-                  <p class="description">Animează personaje rig-uri prin motion capture webcam.</p>
-                  <ul class="features">
-                    <li>Puppet pin setup</li>
-                    <li>Webcam motion capture</li>
-                    <li>Lip sync automat</li>
-                    <li>AI-assisted pose</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Importați ilustrație în Character Animator<br />
-                    2. Puppet Pin: set points (head, arms)<br />
-                    3. Record: webcam capture mișcările<br />
-                    4. AI: lip sync din audio<br />
-                    5. Export video direct Premiere Pro
-                  </div>
-                </div>
-
-                <!-- Manim (Animation Math) -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>Manim (Open Source Animation)</h3>
-                    <span class="badge free">Gratuit</span>
-                  </div>
-                  <div class="price"><strong>100% Gratuit</strong> (GitHub open source)</div>
-                  <p class="description">Crează animații matematice și explicații vizuale cu Python.</p>
-                  <ul class="features">
-                    <li>Python-based animation</li>
-                    <li>Formule matematice animate</li>
-                    <li>Diagrame și grafice</li>
-                    <li>Professional output 4K</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. pip install manim<br />
-                    2. Scrieți scenă în Python<br />
-                    3. manim render scene.py<br />
-                    4. Exportă MP4 4K automat<br />
-                    5. Perfect pentru science videos
-                  </div>
-                </div>
-
-                <!-- Blender (3D) -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>Blender Eevee + Cycles</h3>
-                    <span class="badge free">Gratuit (Open Source)</span>
-                  </div>
-                  <div class="price"><strong>100% Gratuit</strong> (blender.org)</div>
-                  <p class="description">Professional 3D modeling, rendering, VFX, animation.</p>
-                  <ul class="features">
-                    <li>3D modeling & sculpture</li>
-                    <li>Professional rendering</li>
-                    <li>Motion graphics</li>
-                    <li>VFX compositing</li>
-                    <li>Scripting Python</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. blender.org download<br />
-                    2. Model → Material → Light<br />
-                    3. Timeline: keyframe animation<br />
-                    4. Eevee: real-time render<br />
-                    5. Render Farm: output 4K EXR
-                  </div>
-                </div>
-
-                <!-- Pencil2D (2D Animation) -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>Pencil2D Hand-Drawn Animation</h3>
-                    <span class="badge free">Gratuit (Open Source)</span>
-                  </div>
-                  <div class="price"><strong>100% Gratuit</strong> (Windows/Mac/Linux)</div>
-                  <p class="description">Crează animații 2D tradiționale cu presupunere de mișcare ușoară.</p>
-                  <ul class="features">
-                    <li>Frame-by-frame drawing</li>
-                    <li>Onion skin help</li>
-                    <li>Timeline editing</li>
-                    <li>Vector și raster mixed</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. pencil2d.org download<br />
-                    2. New Layer → New Frame<br />
-                    3. Draw cu Pencil/Brush<br />
-                    4. Onion skin: vizi frame anterior<br />
-                    5. Export video MP4
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- PROMOVARE ȘI DISTRIBUȚIE -->
-            <div class="category">
-              <h2>7. 📢 Promovare și Distribuție (Multiplatform)</h2>
-
-              <div class="tools-grid">
-                <!-- Buffer / Later -->
-                <div class="tool-card" data-type="paid,freemium">
-                  <div class="tool-name">
-                    <h3>Buffer Social Media Manager</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: 3 platform | <strong>Paid: $5-100/lună</strong></div>
-                  <p class="description">Program și distribuiți video pe TikTok, YouTube, Instagram, Facebook.</p>
-                  <ul class="features">
-                    <li>Schedule posts pe 10+ platforme</li>
-                    <li>AI caption generator</li>
-                    <li>Best time to post automat</li>
-                    <li>Analytics per platform</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. buffer.com → Connect accounts<br />
-                    2. Upload video<br />
-                    3. AI genereaza descriere + hashtags<br />
-                    4. Schedule pentru mai târziu<br />
-                    5. Analytics: track engagement
-                  </div>
-                </div>
-
-                <!-- Repurpose.io -->
-                <div class="tool-card" data-type="paid">
-                  <div class="tool-name">
-                    <h3>Repurpose.io (Video Repurpose)</h3>
-                    <span class="badge paid">Paid</span>
-                  </div>
-                  <div class="price"><strong>$35-199/lună</strong></div>
-                  <p class="description">Transforma 1 video în 10 variante optimizate pentru fiecare platform.</p>
-                  <ul class="features">
-                    <li>Automatic video repurposing</li>
-                    <li>Optimizare per platform</li>
-                    <li>Captions auto</li>
-                    <li>Scheduling integrate</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Upload video lungă<br />
-                    2. Selectați platforme țintă<br />
-                    3. AI crează variante crop/format<br />
-                    4. Auto-captions și effects<br />
-                    5. Schedule pe toate platformele
-                  </div>
-                </div>
-
-                <!-- YouTube Studio (Native) -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>YouTube Studio (Native Tools)</h3>
-                    <span class="badge free">Gratuit</span>
-                  </div>
-                  <div class="price"><strong>100% Gratuit</strong> cu YouTube account</div>
-                  <p class="description">Publicare, scheduling, AI auto-captions, monetizare.</p>
-                  <ul class="features">
-                    <li>Auto-generate captions</li>
-                    <li>Chapters automat AI</li>
-                    <li>Scheduling advance</li>
-                    <li>Analytics real-time</li>
-                    <li>Monetizare YouTube Partner</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. youtube.com/studio<br />
-                    2. Create → Upload video<br />
-                    3. Scrieți title + description<br />
-                    4. Auto-captions: enable<br />
-                    5. Schedule și publish
-                  </div>
-                </div>
-
-                <!-- HubSpot Social Media -->
-                <div class="tool-card" data-type="free,paid">
-                  <div class="tool-name">
-                    <h3>HubSpot Social Media Toolkit</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Plan gratuit: basic | <strong>Marketing Hub: $45+/lună</strong></div>
-                  <p class="description">Marketing automation cu social media scheduling și AI messaging.</p>
-                  <ul class="features">
-                    <li>Schedule pe social</li>
-                    <li>AI content suggestion</li>
-                    <li>Lead tracking</li>
-                    <li>CRM integration</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. HubSpot → Social Media<br />
-                    2. Connect social accounts<br />
-                    3. Compose post cu AI suggest<br />
-                    4. Schedule per platform<br />
-                    5. Track clicks și conversions
-                  </div>
-                </div>
-
-                <!-- TubeBuddy / VidIQ (YouTube Optimization) -->
-                <div class="tool-card" data-type="paid,freemium">
-                  <div class="tool-name">
-                    <h3>TubeBuddy (YouTube SEO)</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Basic: <strong>Gratuit</strong> | Pro: <strong>$9.99/lună</strong></div>
-                  <p class="description">SEO optimization YouTube, keyword research, thumbnail testing.</p>
-                  <ul class="features">
-                    <li>Keyword research cu volume</li>
-                    <li>Title suggestions A/B test</li>
-                    <li>Thumbnail split-test</li>
-                    <li>Analytics competitori</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. tubebuddy.com extension<br />
-                    2. Research keywords in creator studio<br />
-                    3. Titlu suggestions<br />
-                    4. Thumbnail test: A/B variants<br />
-                    5. Track CTR și performance
-                  </div>
-                </div>
-
-                <!-- Notion CMS (Content Calendar) -->
-                <div class="tool-card" data-type="free,paid">
-                  <div class="tool-name">
-                    <h3>Notion Content Calendar (DIY)</h3>
-                    <span class="badge free">Gratuit (Notion Free)</span>
-                  </div>
-                  <div class="price"><strong>Gratuit</strong> sau <strong>$12/lună Pro</strong></div>
-                  <p class="description">Database Notion pentru planning obsesiv cu automation Zapier.</p>
-                  <ul class="features">
-                    <li>Content planning database</li>
-                    <li>Status tracking (Draft-Published)</li>
-                    <li>Zapier automation</li>
-                    <li>Team collaboration</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Notion → Database template<br />
-                    2. Coloane: Title, Platform, Status, Link<br />
-                    3. Zapier: publish automatically<br />
-                    4. Tags per series<br />
-                    5. Filter & sort per platform
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- MONETIZARE -->
-            <div class="category">
-              <h2>8. 💰 Monetizare și Venituri</h2>
-
-              <div class="tools-grid">
-                <!-- YouTube Partner Program -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>YouTube Partner Program</h3>
-                    <span class="badge free">Native</span>
-                  </div>
-                  <div class="price">Cerințe: 1k subs + 4k watch-hours pe 90 zile</div>
-                  <p class="description">Monetizare video cu ads: CPM $2-$10/1000 views.</p>
-                  <ul class="features">
-                    <li>Ad revenue (AdSense)</li>
-                    <li>Channel memberships</li>
-                    <li>Super Chat/Thanks</li>
-                    <li>YouTube Shorts Fund (deprecated)</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. YouTube Studio → Monetizare<br />
-                    2. Accept terms of service<br />
-                    3. Link AdSense account<br />
-                    4. Enable ads (skippable/non-skippable)<br />
-                    5. Track revenue: Analytics → Income
-                  </div>
-                </div>
-
-                <!-- TikTok Creator Fund -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>TikTok Creator Fund</h3>
-                    <span class="badge free">Native</span>
-                  </div>
-                  <div class="price">Cerințe: 10k followers + 100k views/30 zile | CPM: $0.02-$0.04</div>
-                  <p class="description">Venituri TikTok: ads share + gifts (diamante).</p>
-                  <ul class="features">
-                    <li>Creator Fund revenue</li>
-                    <li>Gifts (viewers donate)</li>
-                    <li>Brand partnerships</li>
-                    <li>TikTok Shop commission</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. TikTok → Profil → Creator Center<br />
-                    2. Apply Creator Fund<br />
-                    3. Await approval (1-2 săptămâni)<br />
-                    4. Balancing: check earnings<br />
-                    5. Cash out prin bank transfer
-                  </div>
-                </div>
-
-                <!-- Patreon (Direct Funding) -->
-                <div class="tool-card" data-type="free,paid">
-                  <div class="tool-name">
-                    <h3>Patreon (Community Support)</h3>
-                    <span class="badge freemium">Freemium</span>
-                  </div>
-                  <div class="price">Gratuit + 5% commission | Patreon takes 5-8%</div>
-                  <p class="description">Direct funding de la fans, tier-uri exclusive content.</p>
-                  <ul class="features">
-                    <li>Tiers cu price personalizat</li>
-                    <li>Exclusive content</li>
-                    <li>Community chat</li>
-                    <li>Detailed analytics</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. patreon.com creator signup<br />
-                    2. Create tiers (entry, vip, exclusive)<br />
-                    3. Post exclusive content<br />
-                    4. Link YouTube video (call-to-action)<br />
-                    5. Monthly payouts per Stripe
-                  </div>
-                </div>
-
-                <!-- Gumroad (Digital Products) -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>Gumroad (Digital Products)</h3>
-                    <span class="badge free">Freemium (5% commission)</span>
-                  </div>
-                  <div class="price">Gratuit + 5% fee pe vânzări</div>
-                  <p class="description">Vinde ebooks, templates, scripts, exclusive video, samples.</p>
-                  <ul class="features">
-                    <li>Digital product store</li>
-                    <li>License key system</li>
-                    <li>License tiers (perpetual/monthly)</li>
-                    <li>Email subscribers list</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. gumroad.com → Products → New<br />
-                    2. Upload file (video, PDF, zip)<br />
-                    3. Set price și description<br />
-                    4. Share link pe YouTube/social<br />
-                    5. Payments direct Stripe/PayPal
-                  </div>
-                </div>
-
-                <!-- Sponsorships & Affiliate -->
-                <div class="tool-card" data-type="free">
-                  <div class="tool-name">
-                    <h3>Influencer Networks (AspireIQ, Impact)</h3>
-                    <span class="badge free">Networked</span>
-                  </div>
-                  <div class="price">Brand deals: $500-$10k per campaign | Commission 10-30%</div>
-                  <p class="description">Conectează creator cu branzi pentru sponsored content.</p>
-                  <ul class="features">
-                    <li>Brand deal matching</li>
-                    <li>Affiliate commission</li>
-                    <li>Contract management</li>
-                    <li>Performance tracking</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Créeaza profil pe AspireIQ/Impact<br />
-                    2. Add portfolio și metrics<br />
-                    3. Browse opțiuni brand<br />
-                    4. Pitch: send proposal cu media kit<br />
-                    5. Negociere rate și deliverables
-                  </div>
-                </div>
-
-                <!-- Teachable / Udemy (Courses) -->
-                <div class="tool-card" data-type="paid">
-                  <div class="tool-name">
-                    <h3>Teachable / Udemy Courses</h3>
-                    <span class="badge paid">Paid</span>
-                  </div>
-                  <div class="price">Teachable: $39/lună | Udemy: 0-50% royalty pe vânzări</div>
-                  <p class="description">Vinde curse video la sute de mii de studeni.</p>
-                  <ul class="features">
-                    <li>Video course builder</li>
-                    <li>Quiz și assignments</li>
-                    <li>Student community</li>
-                    <li>Marketing built-in (Udemy)</li>
-                  </ul>
-                  <div class="tutorial">
-                    <strong>Tutorial:</strong><br />
-                    1. Teachable.com create course<br />
-                    2. Modulele: upload video lessons<br />
-                    3. Pricing: set price (USD/local)<br />
-                    4. Email sequences: nurture leads<br />
-                    5. Affiliate: studenți refer = commission
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
-
-    <script>
-      const filterButtons = document.querySelectorAll(".filter-btn");
-      const toolCards = document.querySelectorAll(".tool-card");
-      const categories = document.querySelectorAll(".category");
-      const navLinks = document.querySelectorAll(".nav-link");
-      const progress = document.getElementById("reading-progress");
-
-      categories.forEach((category, index) => {
-        if (!category.id) {
-          category.id = `category-${index + 1}`;
-        }
-      });
-
-      filterButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const filter = btn.dataset.filter;
-          filterButtons.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-
-          toolCards.forEach((card) => {
-            const types = card.dataset.type.split(",");
-            card.style.display = filter === "all" || types.includes(filter) ? "" : "none";
-          });
-        });
-      });
-
-      function updateNav() {
-        const scrollY = window.scrollY;
-        const docH = document.body.scrollHeight - window.innerHeight;
-        progress.style.width = `${(scrollY / docH) * 100}%`;
-
-        let current = "category-1";
-        categories.forEach((section) => {
-          if (scrollY >= section.offsetTop - 100) current = section.id;
-        });
-
-        navLinks.forEach((link) => {
-          link.classList.remove("active");
-          const href = link.getAttribute("href");
-          if (href === `#${current}`) link.classList.add("active");
-        });
-      }
-
-      navLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-          const href = link.getAttribute("href") || "";
-          if (!href.startsWith("#")) return;
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) target.scrollIntoView({ behavior: "smooth" });
-        });
-      });
-
-      window.addEventListener("scroll", updateNav, { passive: true });
-      updateNav();
-    </script>
-  </body>
+        <script>
+            const filterButtons = document.querySelectorAll(".filter-btn");
+            const toolCards = document.querySelectorAll(".tool-card");
+            const categories = document.querySelectorAll(".category");
+            const navLinks = document.querySelectorAll(".nav-link");
+            const progress = document.getElementById("reading-progress");
+
+            categories.forEach((category, index) => {
+                if (!category.id) {
+                    category.id = `category-${index + 1}`;
+                }
+            });
+
+            filterButtons.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const filter = btn.dataset.filter;
+                    filterButtons.forEach((b) => b.classList.remove("active"));
+                    btn.classList.add("active");
+
+                    toolCards.forEach((card) => {
+                        const types = card.dataset.type.split(",");
+                        card.style.display = filter === "all" || types.includes(filter) ? "" : "none";
+                    });
+                });
+            });
+
+            function updateNav() {
+                const scrollY = window.scrollY;
+                const docH = document.body.scrollHeight - window.innerHeight;
+                progress.style.width = `${(scrollY / docH) * 100}%`;
+
+                let current = "category-1";
+                categories.forEach((section) => {
+                    if (scrollY >= section.offsetTop - 100) current = section.id;
+                });
+
+                navLinks.forEach((link) => {
+                    link.classList.remove("active");
+                    const href = link.getAttribute("href");
+                    if (href === `#${current}`) link.classList.add("active");
+                });
+            }
+
+            navLinks.forEach((link) => {
+                link.addEventListener("click", (e) => {
+                    const href = link.getAttribute("href") || "";
+                    if (!href.startsWith("#")) return;
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: "smooth" });
+                });
+            });
+
+            window.addEventListener("scroll", updateNav, { passive: true });
+            updateNav();
+        </script>
+    </body>
 </html>

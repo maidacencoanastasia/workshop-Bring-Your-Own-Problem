@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="ro">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ghid Carusel Claude AI — BYOP Workshop</title>
+        <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="reading-progress"></div>
+
+        <div class="shell">
+            <!-- SIDEBAR NAV -->
+            <nav id="sidebar">
+                <div class="nav-logo">
+                    <div class="nav-logo-title">
+                        <a href="index.html" style="text-decoration: none; color: var(--accent)">← BYOP Workshop</a>
+                    </div>
+                    <div class="nav-logo-sub">Ghid Carusel Claude AI</div>
+                </div>
+
+                <div class="nav-section-label">Conținut</div>
+                <a href="#intro" class="nav-link active">
+                    <span class="nav-icon">📱</span>
+                    Introducere
+                </a>
+                <a href="#prompt1" class="nav-link">
+                    <span class="nav-icon">💡</span>
+                    Prompt 1: Generator teme
+                </a>
+                <a href="#prompt2" class="nav-link">
+                    <span class="nav-icon">📝</span>
+                    Prompt 2: Din text lung
+                </a>
+                <a href="#prompt3" class="nav-link">
+                    <span class="nav-icon">🎨</span>
+                    Prompt 3: Design carusel
+                </a>
+                <a href="#prompt4" class="nav-link">
+                    <span class="nav-icon">🔄</span>
+                    Prompt 4: Serie carusele
+                </a>
+                <a href="#workflow" class="nav-link">
+                    <span class="nav-icon">⚡</span>
+                    Workflow practic
+                </a>
+
+                <div class="nav-footer">
+                    <div>🟢 Gratuit · Claude.ai</div>
+                    <div style="margin-top: 6px">Actualizat mai 2026</div>
+                </div>
+            </nav>
+
+            <!-- MAIN CONTENT -->
+            <main id="main">
+                <!-- HERO -->
+                <div class="hero">
+                    <div class="hero-eyebrow">Ghid Complet</div>
+                    <h1 class="hero-title">
+                        Carusele Instagram
+                        <span>cu Claude AI</span>
+                    </h1>
+                    <p class="hero-desc">4 prompturi practice pentru generare carusele HTML + funcție export PNG · De la idee la postare în 15 minute · Fără Canva Pro</p>
+                    <div class="hero-meta">
+                        <span class="hero-badge green">✦ Prompturi bilingve (RU/EN)</span>
+                        <span class="hero-badge blue">Export automat PNG</span>
+                        <span class="hero-badge">~1 oră economisită/carusel</span>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <!-- ===== INTRO ===== -->
+                    <section class="section" id="intro">
+                        <div class="section-header">
+                            <div class="section-icon" style="background: rgba(200, 240, 96, 0.1)">📱</div>
+                            <div>
+                                <h2 class="section-title">De ce Claude AI pentru carusele?</h2>
+                                <p class="section-subtitle">HTML + CSS + JavaScript = carusele profesionale fără costuri suplimentare</p>
+                            </div>
+                            <span class="duration-tag">5 min</span>
+                        </div>
+
+                        <div class="intro-block">
+                            <div class="quote">
+                                <span>Claude AI</span>
+                                generează cod complet funcțional
+                            </div>
+                            <p style="font-size: 14px; color: #aaa; font-weight: 300">
+                                Spre deosebire de Canva sau alte tool-uri vizuale, Claude AI creează fișiere HTML cu design complet personalizabil și funcție de export PNG integrată. Zero costuri,
+                                control total asupra designului, posibilitate de a reutiliza template-ul pentru zeci de carusele.
+                            </p>
+                        </div>
+
+                        <div class="cards">
+                            <div class="card">
+                                <div class="card-label">Avantaj 1</div>
+                                <div class="card-title">Control total design</div>
+                                <div class="card-desc">Modifici culori, fonturi, layout exact cum vrei. Nu ești limitat de template-uri predefinite.</div>
+                            </div>
+                            <div class="card">
+                                <div class="card-label">Avantaj 2</div>
+                                <div class="card-title">Export automat PNG</div>
+                                <div class="card-desc">Claude adaugă butoane care convertesc fiecare slide în PNG 1080x1350px gata de upload.</div>
+                            </div>
+                            <div class="card">
+                                <div class="card-label">Avantaj 3</div>
+                                <div class="card-title">Reutilizare template</div>
+                                <div class="card-desc">Odată creat stilul, schimbi doar textul pentru următoarele carusele. Economie de timp masivă.</div>
+                            </div>
+                        </div>
+
+                        <div class="callout tip">
+                            <span class="callout-icon">💡</span>
+                            <div>
+                                <strong>Tip important:</strong>
+                                Păstrează un fișier template. Pentru fiecare carusel nou, doar copiezi fișierul și schimbi textul. Design-ul rămâne identic = branding consistent în tot profilul.
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr />
+
+                    <!-- ===== PROMPT 1 ===== -->
+                    <section class="section" id="prompt1">
+                        <div class="section-header">
+                            <div class="section-icon" style="background: rgba(96, 200, 240, 0.1)">💡</div>
+                            <div>
+                                <h2 class="section-title">Prompt 1: Generator Teme Carusele</h2>
+                                <p class="section-subtitle">Planificare conținut · Identificare subiecte virale · Content plan 10 postări</p>
+                            </div>
+                            <span class="duration-tag">2 min</span>
+                        </div>
+
+                        <div class="callout info">
+                            <span class="callout-icon">🎯</span>
+                            <div>
+                                <strong>Când folosești:</strong>
+                                La început de lună pentru planificare conținut sau când nu ai idei ce să postezi.
+                            </div>
+                        </div>
+
+                        <div class="scenarios-title">🇷🇺 Versiunea Rusă</div>
+                        <div class="prompt-block" style="background: rgba(96, 200, 240, 0.05); border-left: 3px solid var(--accent2)">
+                            «Ты — контент-стратег для Instagram. Моя ниша: [ниша]. Моя аудитория: [описание]. Придумай 10 тем для каруселей, которые будут активно СОХРАНЯТЬ. Для каждой темы укажи: 1)
+                            Заголовок карусели (цепляющий, с цифрой) 2) Почему это будут сохранять 3) Количество слайдов Темы должны быть практичными — чек-листы, пошаговые инструкции, подборки,
+                            сравнения»
+                        </div>
+
+                        <div class="scenarios-title" style="margin-top: 24px">🇬🇧 English Version</div>
+                        <div class="prompt-block" style="background: rgba(96, 200, 240, 0.05); border-left: 3px solid var(--accent2)">
+                            "You are an Instagram content strategist. My niche: [niche]. My audience: [description]. Come up with 10 carousel topics that people will actively SAVE. For each topic
+                            provide: 1) Carousel title (catchy, with a number) 2) Why people will save it 3) Number of slides Topics should be practical — checklists, step-by-step guides, collections,
+                            comparisons"
+                        </div>
+
+                        <div class="callout tip" style="margin-top: 20px">
+                            <span class="callout-icon">✅</span>
+                            <div>
+                                <strong>Rezultat:</strong>
+                                Content plan pe 10 carusele cu înțelegere clară de CE fiecare va avea engagement mare. Economisești 2-3 ore de brainstorming.
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr />
+
+                    <!-- ===== PROMPT 2 ===== -->
+                    <section class="section" id="prompt2">
+                        <div class="section-header">
+                            <div class="section-icon" style="background: rgba(200, 240, 96, 0.1)">📝</div>
+                            <div>
+                                <h2 class="section-title">Prompt 2: Carusel din Text Lung</h2>
+                                <p class="section-subtitle">Repurposing conținut · Din articol în carusel · Optimizare pentru salvări</p>
+                            </div>
+                            <span class="duration-tag">3 min</span>
+                        </div>
+
+                        <div class="callout info">
+                            <span class="callout-icon">🎯</span>
+                            <div>
+                                <strong>Când folosești:</strong>
+                                Ai un articol de blog, newsletter sau post lung pe care vrei să-l transformi în carusel vizual.
+                            </div>
+                        </div>
+
+                        <div class="scenarios-title">🇷🇺 Versiunea Rusă</div>
+                        <div class="prompt-block" style="background: rgba(200, 240, 96, 0.05); border-left: 3px solid var(--accent)">
+                            «Вот мой длинный пост/статья: [вставить текст]. Преврати его в карусель из 8-10 слайдов. Правила: 1) Каждый слайд — 1 ключевая мысль 2) Текст на слайде — максимум 30 слов
+                            3) Первый слайд — хук, последний — призыв к действию 4) Добавь визуальные подсказки: где поставить иконку, где выделить цветом, где использовать стрелку»
+                        </div>
+
+                        <div class="scenarios-title" style="margin-top: 24px">🇬🇧 English Version</div>
+                        <div class="prompt-block" style="background: rgba(200, 240, 96, 0.05); border-left: 3px solid var(--accent)">
+                            "Here's my long post/article: [paste text]. Transform it into a carousel of 8-10 slides. Rules: 1) Each slide — 1 key idea 2) Text per slide — maximum 30 words 3) First
+                            slide — hook, last slide — call to action 4) Add visual hints: where to place icons, where to highlight with color, where to use arrows"
+                        </div>
+
+                        <div class="callout tip" style="margin-top: 20px">
+                            <span class="callout-icon">✅</span>
+                            <div>
+                                <strong>Rezultat:</strong>
+                                Structură completă carusel cu indicații vizuale. Claude îți spune exact ce text merge pe fiecare slide și ce elemente grafice să adaugi.
+                            </div>
+                        </div>
+
+                        <div class="callout warn" style="margin-top: 14px">
+                            <span class="callout-icon">⚠️</span>
+                            <div>
+                                <strong>Metodă "Slippery Slide":</strong>
+                                Fiecare slide trebuie să creeze curiozitate pentru următorul. Ultimul cuvânt de pe slide se leagă de primul cuvânt de pe următorul → fluiditate maximă.
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr />
+
+                    <!-- ===== PROMPT 3 ===== -->
+                    <section class="section" id="prompt3">
+                        <div class="section-header">
+                            <div class="section-icon" style="background: rgba(240, 96, 200, 0.1)">🎨</div>
+                            <div>
+                                <h2 class="section-title">Prompt 3: Design Complet HTML + Export PNG</h2>
+                                <p class="section-subtitle">Cel mai important prompt · Generare cod complet · Funcție export integrată</p>
+                            </div>
+                            <span class="duration-tag">5 min</span>
+                        </div>
+
+                        <div class="callout info">
+                            <span class="callout-icon">🎯</span>
+                            <div>
+                                <strong>Când folosești:</strong>
+                                După ce ai structura caruselului (din Prompt 2) și vrei să generezi design-ul vizual complet.
+                            </div>
+                        </div>
+
+                        <div class="scenarios-title">🇷🇺 Versiunea Rusă</div>
+                        <div class="prompt-block" style="background: rgba(240, 96, 200, 0.05); border-left: 3px solid var(--accent3)">
+                            «Создай карусель как HTML-файл размером 1080x1350px на слайд (формат 4:5).
+
+                            <strong>Тема:</strong>
+                            [тема карусели]
+                            <strong>Количество слайдов:</strong>
+                            [число]
+                            <strong>Стиль:</strong>
+                            [минимализм / яркий / тёмный фон / пастельный]
+                            <strong>Цветовая палитра:</strong>
+                            [цвета или "выбери сам"]
+                            <strong>Шрифт:</strong>
+                            [название или "современный sans-serif"]
+
+                            <strong>Требования к дизайну:</strong>
+                            • Каждый слайд: крупный заголовок, 2-3 строки текста, иконка или геометрическая фигура для акцента • Верстай в одном HTML-файле, где каждый слайд размером 1080x1350px •
+                            Добавь тень к слайдам и обязательно нумерацию в углу • Первый слайд (обложка) сделай с прозрачным фоном под текстом — я добавлю свою фотку
+
+                            <strong>ВАЖНО:</strong>
+                            Добавь JavaScript функцию для экспорта каждого слайда как PNG. Подключи библиотеку html2canvas. Создай для каждого слайда кнопку "Сохранить PNG", которая при клике
+                            сохраняет именно этот слайд как изображение 1080x1350px»
+                        </div>
+
+                        <div class="scenarios-title" style="margin-top: 24px">🇬🇧 English Version</div>
+                        <div class="prompt-block" style="background: rgba(240, 96, 200, 0.05); border-left: 3px solid var(--accent3)">
+                            "Create a carousel as an HTML file with 1080x1350px per slide (4:5 format).
+
+                            <strong>Topic:</strong>
+                            [carousel topic]
+                            <strong>Number of slides:</strong>
+                            [number]
+                            <strong>Style:</strong>
+                            [minimalist / bright / dark background / pastel]
+                            <strong>Color palette:</strong>
+                            [colors or "choose yourself"]
+                            <strong>Font:</strong>
+                            [name or "modern sans-serif"]
+
+                            <strong>Design requirements:</strong>
+                            • Each slide: large title, 2-3 lines of text, icon or geometric shape for accent • Code in one HTML file where each slide is 1080x1350px • Add shadow to slides and
+                            mandatory numbering in corner • First slide (cover) make with transparent background under text — I'll add my photo
+
+                            <strong>IMPORTANT:</strong>
+                            Add JavaScript function to export each slide as PNG. Include html2canvas library. Create a "Save as PNG" button for each slide that saves that specific slide as 1080x1350px
+                            image when clicked"
+                        </div>
+
+                        <div class="callout tip" style="margin-top: 20px">
+                            <span class="callout-icon">✅</span>
+                            <div>
+                                <strong>Rezultat:</strong>
+                                Fișier HTML complet cu toate slide-urile + butoane funcționale pentru export PNG. Deschizi în browser → apeși buton → salvezi PNG.
+                            </div>
+                        </div>
+
+                        <div class="workflow" style="margin-top: 24px">
+                            <div class="workflow-step">
+                                <div class="workflow-step-num">1</div>
+                                <div class="workflow-step-body">
+                                    <div class="workflow-step-title">Copiezi promptul în Claude</div>
+                                    <div class="workflow-step-desc">Completezi câmpurile cu tema ta, alegi stilul vizual</div>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="workflow-step-num">2</div>
+                                <div class="workflow-step-body">
+                                    <div class="workflow-step-title">Claude generează cod HTML complet</div>
+                                    <div class="workflow-step-desc">Copiezi codul, salvezi ca "carusel.html"</div>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="workflow-step-num">3</div>
+                                <div class="workflow-step-body">
+                                    <div class="workflow-step-title">Deschizi în browser</div>
+                                    <div class="workflow-step-desc">Dublu-click pe fișier → vezi toate slide-urile</div>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="workflow-step-num">4</div>
+                                <div class="workflow-step-body">
+                                    <div class="workflow-step-title">Apeși "Salvează PNG" pentru fiecare slide</div>
+                                    <div class="workflow-step-desc">Browser descarcă automat imaginile 1080x1350px</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr />
+
+                    <!-- ===== PROMPT 4 ===== -->
+                    <section class="section" id="prompt4">
+                        <div class="section-header">
+                            <div class="section-icon" style="background: rgba(240, 180, 96, 0.1)">🔄</div>
+                            <div>
+                                <h2 class="section-title">Prompt 4: Serie de Carusele în Stil Uniform</h2>
+                                <p class="section-subtitle">Branding consistent · 5 carusele deodată · Economie de timp masivă</p>
+                            </div>
+                            <span class="duration-tag">10 min</span>
+                        </div>
+
+                        <div class="callout info">
+                            <span class="callout-icon">🎯</span>
+                            <div>
+                                <strong>Când folosești:</strong>
+                                Vrei să creezi content plan pe 2-3 săptămâni și ai nevoie de mai multe carusele cu același branding vizual.
+                            </div>
+                        </div>
+
+                        <div class="scenarios-title">🇷🇺 Versiunea Rusă</div>
+                        <div class="prompt-block" style="background: rgba(240, 180, 96, 0.05); border-left: 3px solid var(--warn)">
+                            «Создай 5 каруселей на темы: 1. [тема 1] 2. [тема 2] 3. [тема 3] 4. [тема 4] 5. [тема 5] Сделай всё как ОДИН HTML-файл. Все карусели в едином визуальном стиле:
+
+                            <strong>Единые элементы:</strong>
+                            • Один шрифт (выбери современный sans-serif) • Одна цветовая палитра (предложи профессиональную) • Одинаковое расположение нумерации слайдов • Одинаковый стиль заголовков •
+                            Одинаковый размер текста
+
+                            <strong>Обложки:</strong>
+                            Первый слайд каждой карусели делай с областью под фото — я потом подставлю свою фотку в Canva за 2 минуты
+
+                            <strong>Экспорт:</strong>
+                            Добавь кнопки для сохранения каждого слайда как PNG 1080x1350px. Используй html2canvas»
+                        </div>
+
+                        <div class="scenarios-title" style="margin-top: 24px">🇬🇧 English Version</div>
+                        <div class="prompt-block" style="background: rgba(240, 180, 96, 0.05); border-left: 3px solid var(--warn)">
+                            "Create 5 carousels on topics: 1. [topic 1] 2. [topic 2] 3. [topic 3] 4. [topic 4] 5. [topic 5] Make everything as ONE HTML file. All carousels in unified visual style:
+
+                            <strong>Unified elements:</strong>
+                            • One font (choose modern sans-serif) • One color palette (suggest professional) • Same slide numbering position • Same title style • Same text size
+
+                            <strong>Covers:</strong>
+                            First slide of each carousel make with area for photo — I'll add my photo in Canva in 2 minutes
+
+                            <strong>Export:</strong>
+                            Add buttons to save each slide as PNG 1080x1350px. Use html2canvas"
+                        </div>
+
+                        <div class="callout tip" style="margin-top: 20px">
+                            <span class="callout-icon">✅</span>
+                            <div>
+                                <strong>Rezultat:</strong>
+                                5 carusele complete în același stil vizual = profil Instagram cu branding consistent + content pe 2 săptămâni.
+                            </div>
+                        </div>
+
+                        <div class="cards" style="margin-top: 24px">
+                            <div class="card">
+                                <div class="card-label">Economie timp</div>
+                                <div class="card-title">~4 ore → 20 minute</div>
+                                <div class="card-desc">Fără acest prompt: 40-50 min/carusel în Canva. Cu el: 4 min/carusel (doar adaugi poza pe copertă).</div>
+                            </div>
+                            <div class="card">
+                                <div class="card-label">Branding</div>
+                                <div class="card-title">Consistent automat</div>
+                                <div class="card-desc">Toate cele 5 carusele au exact aceleași culori, fonturi, layout → feed coerent vizual.</div>
+                            </div>
+                            <div class="card">
+                                <div class="card-label">Reutilizare</div>
+                                <div class="card-title">Template salvat</div>
+                                <div class="card-desc">Luna următoare doar schimbi textele în HTML → design rămâne același.</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr />
+
+                    <!-- ===== WORKFLOW PRACTIC ===== -->
+                    <section class="section" id="workflow">
+                        <div class="section-header">
+                            <div class="section-icon" style="background: rgba(96, 200, 240, 0.1)">⚡</div>
+                            <div>
+                                <h2 class="section-title">Workflow Complet: De la Zero la Postare</h2>
+                                <p class="section-subtitle">Pașii exacți · 15 minute total · Demonstrație practică</p>
+                            </div>
+                            <span class="duration-tag">5 min citire</span>
+                        </div>
+
+                        <div class="intro-block">
+                            <div class="quote">
+                                Час работы →
+                                <span>15 минут</span>
+                            </div>
+                            <p style="font-size: 14px; color: #aaa; font-weight: 300">
+                                Procesul complet de la idee la carusel postat pe Instagram. Urmează exact acești pași și vei avea rezultat profesional în mai puțin de 15 minute.
+                            </p>
+                        </div>
+
+                        <div class="workflow">
+                            <div class="workflow-step">
+                                <div class="workflow-step-num">1</div>
+                                <div class="workflow-step-body">
+                                    <div class="workflow-step-title">Scrii Prompt 3 în Claude → obții HTML</div>
+                                    <div class="workflow-step-desc">
+                                        Completezi tema, stilul vizual, culori. Claude generează codul complet cu butoane export.
+                                        <em>Durată: 2 min</em>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="workflow-step-num">2</div>
+                                <div class="workflow-step-body">
+                                    <div class="workflow-step-title">Salvezi ca "carusel.html" și deschizi în browser</div>
+                                    <div class="workflow-step-desc">
+                                        Copiezi codul de la Claude, creezi fișier nou, lipești, salvezi. Dublu-click → vezi toate slide-urile.
+                                        <em>Durată: 1 min</em>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="workflow-step-num">3</div>
+                                <div class="workflow-step-body">
+                                    <div class="workflow-step-title">Apeși butonul "Salvează PNG" pentru fiecare slide</div>
+                                    <div class="workflow-step-desc">
+                                        Browser descarcă automat imaginile 1080x1350px. 8 slide-uri = 8 clicuri.
+                                        <em>Durată: 2 min</em>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="workflow-step-num">4</div>
+                                <div class="workflow-step-body">
+                                    <div class="workflow-step-title">Deschizi slide 1 în Canva sau Photopea (gratuit)</div>
+                                    <div class="workflow-step-desc">
+                                        Doar pentru copertă: adaugi poza ta în fundal. Restul slide-urilor rămân neschimbate.
+                                        <em>Durată: 3 min</em>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="workflow-step-num">5</div>
+                                <div class="workflow-step-body">
+                                    <div class="workflow-step-title">Uploadezi pe Instagram ca carusel</div>
+                                    <div class="workflow-step-desc">
+                                        Selectezi toate cele 8 imagini → adaugi caption → postezi.
+                                        <em>Durată: 2 min</em>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="callout tip" style="margin-top: 24px">
+                            <span class="callout-icon">⏱️</span>
+                            <div>
+                                <strong>Timp total: 10 minute de execuție + 5 minute rezervă = 15 minute.</strong>
+                                Compară cu Canva unde doar design-ul durează 40-50 min.
+                            </div>
+                        </div>
+
+                        <div class="scenarios-title" style="margin-top: 32px">Instrumente necesare</div>
+
+                        <table class="wiki-table">
+                            <thead>
+                                <tr>
+                                    <th>Instrument</th>
+                                    <th>Scop</th>
+                                    <th>Cost</th>
+                                    <th>Alternativă</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Claude.ai</strong></td>
+                                    <td>Generare cod HTML + prompturi</td>
+                                    <td>🟢 Gratuit (5-10 carusele/zi)</td>
+                                    <td>ChatGPT 4o (mai slab la design)</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Browser</strong>
+                                        (Chrome/Firefox)
+                                    </td>
+                                    <td>Deschidere HTML + export PNG</td>
+                                    <td>🟢 Gratuit</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Photopea</strong>
+                                        sau Canva
+                                    </td>
+                                    <td>Adăugare poză pe copertă</td>
+                                    <td>🟢 Gratuit (ambele)</td>
+                                    <td>GIMP, Photoshop</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>html2canvas</strong>
+                                        (bibliotecă JS)
+                                    </td>
+                                    <td>Conversie HTML → PNG</td>
+                                    <td>🟢 Gratuit (open source)</td>
+                                    <td>Claude include automat în cod</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="callout warn" style="margin-top: 24px">
+                            <span class="callout-icon">⚠️</span>
+                            <div>
+                                <strong>Limitări Claude gratuit:</strong>
+                                ~10-15 mesaje complexe pe zi. Un carusel = 1 mesaj (Prompt 3). Dacă faci mai multe carusele, folosește Prompt 4 (5 carusele într-un singur mesaj).
+                            </div>
+                        </div>
+
+                        <div class="scenarios-title" style="margin-top: 32px">Întrebări frecvente</div>
+
+                        <div class="scenario">
+                            <div class="scenario-num" style="background: rgba(96, 200, 240, 0.1); color: var(--accent2)">Q</div>
+                            <div class="scenario-content">
+                                <div class="scenario-title">Pot să modific design-ul după ce Claude l-a generat?</div>
+                                <div class="scenario-desc">
+                                    <strong>Da.</strong>
+                                    Deschizi fișierul HTML în orice editor de text (Notepad++, VS Code) și schimbi culorile, fonturile, dimensiuni. Claude poate să-ți explice ce să modifici exact dacă
+                                    întrebi.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scenario">
+                            <div class="scenario-num" style="background: rgba(96, 200, 240, 0.1); color: var(--accent2)">Q</div>
+                            <div class="scenario-content">
+                                <div class="scenario-title">Dacă PNG-ul nu e exact 1080x1350px?</div>
+                                <div class="scenario-desc">
+                                    Ceri în prompt: "asigură-te că export-ul e exact 1080x1350px, fără margini albe". Dacă tot apar, deschizi în Photopea → Crop → 1080x1350.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scenario">
+                            <div class="scenario-num" style="background: rgba(96, 200, 240, 0.1); color: var(--accent2)">Q</div>
+                            <div class="scenario-content">
+                                <div class="scenario-title">Pot face animații în carusele?</div>
+                                <div class="scenario-desc">
+                                    <strong>Nu direct.</strong>
+                                    Instagram nu acceptă GIF-uri în carusele. Dar poți exporta ca video (screen recording) și posta ca Reel.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scenario">
+                            <div class="scenario-num" style="background: rgba(96, 200, 240, 0.1); color: var(--accent2)">Q</div>
+                            <div class="scenario-content">
+                                <div class="scenario-title">Merge pe telefon?</div>
+                                <div class="scenario-desc">
+                                    <strong>Parțial.</strong>
+                                    Poți deschide HTML-ul în browser mobil, dar butoanele de export nu funcționează bine pe iOS/Android. Cel mai bine lucrezi pe desktop.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr />
+
+                    <!-- ÎNCHEIERE -->
+                    <section class="section" id="close" style="margin-bottom: 80px">
+                        <div class="intro-block">
+                            <div class="quote">
+                                De la zero la
+                                <span>carusel viral</span>
+                                în 15 minute
+                            </div>
+                            <p style="font-size: 14px; color: #aaa; font-weight: 300; margin-bottom: 16px">
+                                Aceste 4 prompturi îți economisesc zeci de ore lunar. Odată ce stăpânești procesul, vei putea crea 5-10 carusele într-o sesiune de 1 oră — suficient pentru content plan
+                                pe o lună întreagă.
+                            </p>
+                            <div style="display: flex; gap: 12px; flex-wrap: wrap">
+                                <a
+                                    href="index.html"
+                                    style="
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 8px;
+                                        padding: 12px 24px;
+                                        background: var(--accent);
+                                        color: var(--bg);
+                                        border-radius: 100px;
+                                        text-decoration: none;
+                                        font-family: &quot;Syne&quot;, sans-serif;
+                                        font-weight: 700;
+                                        font-size: 14px;
+                                    ">
+                                    ← Înapoi la Workshop
+                                </a>
+                                <a
+                                    href="https://claude.ai"
+                                    target="_blank"
+                                    rel="noopener"
+                                    style="
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 8px;
+                                        padding: 12px 24px;
+                                        background: var(--accent2);
+                                        color: var(--bg);
+                                        border-radius: 100px;
+                                        text-decoration: none;
+                                        font-family: &quot;Syne&quot;, sans-serif;
+                                        font-weight: 700;
+                                        font-size: 14px;
+                                    ">
+                                    Deschide Claude AI ↗
+                                </a>
+                                <a
+                                    href="notebooklm_carousel.html"
+                                    style="
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 8px;
+                                        padding: 12px 24px;
+                                        background: var(--bg3);
+                                        color: var(--text);
+                                        border: 1px solid var(--border2);
+                                        border-radius: 100px;
+                                        text-decoration: none;
+                                        font-weight: 600;
+                                        font-size: 14px;
+                                    ">
+                                    Vezi exemplu carusel →
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+
+        <script>
+            // Active nav link on scroll
+            const sections = document.querySelectorAll("section[id]");
+            const navLinks = document.querySelectorAll(".nav-link");
+            const progress = document.getElementById("reading-progress");
+
+            function updateNav() {
+                const scrollY = window.scrollY;
+                const docH = document.body.scrollHeight - window.innerHeight;
+                progress.style.width = (scrollY / docH) * 100 + "%";
+
+                let current = "";
+                sections.forEach((sec) => {
+                    if (scrollY >= sec.offsetTop - 80) current = sec.id;
+                });
+                navLinks.forEach((link) => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href") === "#" + current) link.classList.add("active");
+                });
+            }
+
+            window.addEventListener("scroll", updateNav, { passive: true });
+
+            // Smooth scroll
+            navLinks.forEach((link) => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute("href"));
+                    if (target) target.scrollIntoView({ behavior: "smooth" });
+                });
+            });
+        </script>
+    </body>
+</html>
