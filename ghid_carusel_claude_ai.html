@@ -414,8 +414,8 @@
 
                         <div class="intro-block">
                             <div class="quote">
-                                Час работы →
-                                <span>15 минут</span>
+                                O oră de lucru →
+                                <span>15 minute</span>
                             </div>
                             <p style="font-size: 14px; color: #aaa; font-weight: 300">
                                 Procesul complet de la idee la carusel postat pe Instagram. Urmează exact acești pași și vei avea rezultat profesional în mai puțin de 15 minute.
@@ -687,6 +687,64 @@
                     e.preventDefault();
                     const target = document.querySelector(link.getAttribute("href"));
                     if (target) target.scrollIntoView({ behavior: "smooth" });
+                });
+            });
+
+            // Add copy buttons to all prompt blocks
+            document.addEventListener("DOMContentLoaded", function () {
+                const promptBlocks = document.querySelectorAll(".prompt-block");
+
+                promptBlocks.forEach(function (block) {
+                    // Make block relative positioned for button placement
+                    block.style.position = "relative";
+                    block.style.paddingTop = "40px";
+
+                    // Create copy button
+                    const copyBtn = document.createElement("button");
+                    copyBtn.innerHTML = "📋 Copiază";
+                    copyBtn.style.cssText =
+                        'position: absolute; top: 8px; right: 10px; padding: 6px 12px; background: rgba(200, 240, 96, 0.15); border: 1px solid rgba(200, 240, 96, 0.3); border-radius: 6px; color: #c8f060; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: "DM Sans", sans-serif;';
+
+                    // Hover effect
+                    copyBtn.onmouseover = function () {
+                        this.style.background = "rgba(200, 240, 96, 0.25)";
+                        this.style.borderColor = "rgba(200, 240, 96, 0.5)";
+                    };
+                    copyBtn.onmouseout = function () {
+                        if (this.innerHTML !== "✓ Copiat!") {
+                            this.style.background = "rgba(200, 240, 96, 0.15)";
+                            this.style.borderColor = "rgba(200, 240, 96, 0.3)";
+                        }
+                    };
+
+                    // Copy functionality
+                    copyBtn.onclick = function () {
+                        const textToCopy = block.innerText.replace("📋 Copiază", "").replace("✓ Copiat!", "").trim();
+
+                        navigator.clipboard
+                            .writeText(textToCopy)
+                            .then(function () {
+                                copyBtn.innerHTML = "✓ Copiat!";
+                                copyBtn.style.background = "rgba(200, 240, 96, 0.3)";
+                                copyBtn.style.borderColor = "rgba(200, 240, 96, 0.6)";
+                                copyBtn.style.color = "#c8f060";
+
+                                setTimeout(function () {
+                                    copyBtn.innerHTML = "📋 Copiază";
+                                    copyBtn.style.background = "rgba(200, 240, 96, 0.15)";
+                                    copyBtn.style.borderColor = "rgba(200, 240, 96, 0.3)";
+                                }, 2000);
+                            })
+                            .catch(function (err) {
+                                console.error("Eroare la copiere:", err);
+                                copyBtn.innerHTML = "✗ Eroare";
+                                setTimeout(function () {
+                                    copyBtn.innerHTML = "📋 Copiază";
+                                }, 2000);
+                            });
+                    };
+
+                    block.insertBefore(copyBtn, block.firstChild);
                 });
             });
         </script>
